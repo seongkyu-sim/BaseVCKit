@@ -1,0 +1,23 @@
+PODS:
+  - BaseVCKit (0.1.0)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+
+DEPENDENCIES:
+  - BaseVCKit (from `../`)
+  - FBSnapshotTestCase
+
+EXTERNAL SOURCES:
+  BaseVCKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BaseVCKit: 570b474387c68e50a1addee7d89df7d6fbb96e54
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+
+PODFILE CHECKSUM: ef51a82fd4b143662bcb23da5be87055f37903ba
+
+COCOAPODS: 1.2.1

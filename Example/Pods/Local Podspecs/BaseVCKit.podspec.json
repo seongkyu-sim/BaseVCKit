@@ -1,0 +1,22 @@
+{
+  "name": "BaseVCKit",
+  "version": "0.1.0",
+  "summary": "A short description of BaseVCKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/seongkyu-sim/BaseVCKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "seongkyu-sim": "seongkyu.sim@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/seongkyu-sim/BaseVCKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BaseVCKit/Classes/**/*"
+}
