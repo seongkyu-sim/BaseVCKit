@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import BaseVCKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, NavButtonConfigurable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        print("viewDidLoad, presentStatus.rawValue: \(presentStatus.rawValue)")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        print("viewDidAppear, presentStatus.rawValue: \(presentStatus.rawValue)")
     }
 
     override func didReceiveMemoryWarning() {

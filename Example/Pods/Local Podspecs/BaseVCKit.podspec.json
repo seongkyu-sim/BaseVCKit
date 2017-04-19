@@ -1,8 +1,8 @@
 {
   "name": "BaseVCKit",
   "version": "0.1.0",
-  "summary": "A short description of BaseVCKit.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "Sugar for UIViewController",
+  "description": "BaseVCKit has potocols & extensions",
   "homepage": "https://github.com/seongkyu-sim/BaseVCKit",
   "license": {
     "type": "MIT",
@@ -16,7 +16,13 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "BaseVCKit/Classes/**/*"
+  "source_files": "BaseVCKit/Classes/**/*",
+  "frameworks": "UIKit",
+  "dependencies": {
+    "SnapKit": [
+      "~> 3.0"
+    ]
+  }
 }
