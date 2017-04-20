@@ -13,8 +13,6 @@ import SnapKit
  * This protoco is for UIViewController
  */
 
-private var kKeyboardChangeObserverKey = "keyboardChangeObserver"
-
 public protocol KeyboardObserverable: class {
     func addKeyboardAnimationObserver()
     func removeKeyboardAnimationObserver()
@@ -23,19 +21,12 @@ public protocol KeyboardObserverable: class {
 
 extension KeyboardObserverable where Self: UIViewController {
 
-    private var keyboardChangeObserver: NSObjectProtocol? {
-        get {
-            return objc_getAssociatedObject(self, &kKeyboardChangeObserverKey) as? NSObjectProtocol
-        }
-        set {
-            willChangeValue(forKey: kKeyboardChangeObserverKey)
-            objc_setAssociatedObject(self, &kKeyboardChangeObserverKey, newValue as NSObjectProtocol?, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            didChangeValue(forKey: kKeyboardChangeObserverKey)
-        }
+    private var keyboardOb: NSObjectProtocol {
+        return associatedObject(self, key: "keyboardAnimationObserver", initial: keyboardObInitial)
     }
 
-    public func addKeyboardAnimationObserver() {
-        keyboardChangeObserver = NotificationCenter.default.addObserver(
+    private func keyboardObInitial() -> NSObjectProtocol {
+        let ob = NotificationCenter.default.addObserver(
             forName: NSNotification.Name.UIKeyboardWillChangeFrame,
             object: nil,
             queue: OperationQueue.main,
@@ -53,15 +44,28 @@ extension KeyboardObserverable where Self: UIViewController {
                     print("!!! Invalid conditions for UIKeyboardWillChangeFrameNotification")
                 }
         })
+        return ob
+    }
+
+    public func addKeyboardAnimationObserver() {
+        _ = keyboardOb
     }
 
     public func removeKeyboardAnimationObserver() {
-        if let ob = keyboardChangeObserver {
-            NotificationCenter.default.removeObserver(ob)
-        }
+        NotificationCenter.default.removeObserver(keyboardOb)
     }
 
     public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions) {}
+}
+
+// Association
+private func associatedObject<T: AnyObject>(_ host: AnyObject, key: UnsafeRawPointer, initial: () -> T) -> T {
+    var value = objc_getAssociatedObject(host, key) as? T
+    if value == nil {
+        value = initial()
+        objc_setAssociatedObject(host, key, value, .OBJC_ASSOCIATION_RETAIN)
+    }
+    return value!
 }
 
 
