@@ -179,7 +179,59 @@ extension ModalViewController: KeyboardSanpable {
     }
 }
 ```
+### TabbarVCGenerator
 
+
+```swift
+import UIKit
+import BaseVCKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let w = window {
+            w.backgroundColor = UIColor.white
+            w.rootViewController = CustomTabbar.tabVC
+            w.makeKeyAndVisible()
+        }
+        return true
+    }
+}
+
+
+// MARK: - Spec of TabbarItems
+
+public enum CustomTabbar {
+    case home, setting
+    
+    public static var tabVC: UITabBarController {
+        return TabbarVCGenerator.tabVC(menuSpecs: self.allTabMenuSpec)
+    }
+
+    static var allTabMenuSpec: [TabbarVCGenerator.TabMenuSpec] {
+        return [self.home, self.setting].map{ $0.toMenuSpec }
+    }
+
+    var toMenuSpec: TabbarVCGenerator.TabMenuSpec {
+
+        var systemItem: UITabBarSystemItem!
+        var vc: UIViewController!
+        switch self {
+        case .home:
+            vc = ViewController()
+            systemItem = .search
+        case .setting:
+            vc = ViewController2()
+            systemItem = .history
+        }
+        return TabbarVCGenerator.TabMenuSpec(viewController: vc, systemItem: systemItem)
+    }
+}
+
+```
 
 ## Dependencies
 - [SnapKit](https://github.com/SnapKit/SnapKit) (3.2.0) - A Swift Autolayout DSL for iOS & OS X
