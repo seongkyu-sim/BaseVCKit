@@ -21,9 +21,7 @@ class ModalViewController: BaseViewController {
         let v = UIButton()
         v.setTitle("Done", for: .normal)
         v.backgroundColor = .lightGray
-        v.setTitle("clicked", for: .highlighted)
         v.addTarget(self, action: #selector(self.done), for: .touchUpInside)
-
         self.view.addSubview(v)
         return v
         }()
@@ -34,19 +32,6 @@ class ModalViewController: BaseViewController {
 
         title = "Modal"
         layoutSubViews()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        //        print("viewDidAppear, presentStatus.rawValue: \(presentStatus.rawValue)")
-
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
@@ -75,7 +60,6 @@ class ModalViewController: BaseViewController {
     @objc private func done(sender:UIButton!) {
         view.endEditing(true)
     }
-
 }
 
 // KeyboardObserable
