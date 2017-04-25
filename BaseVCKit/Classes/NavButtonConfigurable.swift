@@ -140,7 +140,7 @@ extension NavButtonConfigurable where Self: UIViewController {
 
 extension UIViewController {
 
-    public func configureBackButton(icon: UIImage?, title: String?) {
+    func configureBackButton(icon: UIImage?, title: String?) {
 
         if let icon = icon {
             self.navigationController?.navigationBar.backIndicatorImage = icon
@@ -160,7 +160,7 @@ extension UIViewController {
         }
     }
 
-    public func configureCloseButton(icon: UIImage?) {
+    func configureCloseButton(icon: UIImage?) {
         var barButton: UIBarButtonItem!
         if let icon = icon {
             let btn = UIButton(type: .custom)

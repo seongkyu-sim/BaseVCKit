@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BaseVCKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let w = window {
+            w.backgroundColor = UIColor.white
+            w.rootViewController = CustomTabbar.tabVC
+            w.makeKeyAndVisible()
+        }
+
         return true
     }
 
@@ -42,5 +51,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+
+// MARK: - 
+
+public enum CustomTabbar {
+    case home, setting
+    
+    public static var tabVC: UITabBarController {
+        return TabbarVCGenerator.tabVC(menuSpecs: self.allTabMenuSpec)
+    }
+
+    static var allTabMenuSpec: [TabbarVCGenerator.TabMenuSpec] {
+        return [self.home, self.setting].map{ $0.toMenuSpec }
+    }
+
+    var toMenuSpec: TabbarVCGenerator.TabMenuSpec {
+
+        var systemItem: UITabBarSystemItem!
+        var vc: UIViewController!
+        switch self {
+        case .home:
+            vc = ViewController()
+            systemItem = .search
+        case .setting:
+            vc = ViewController2()
+            systemItem = .history
+        }
+        return TabbarVCGenerator.TabMenuSpec(viewController: vc, systemItem: systemItem)
+    }
 }
 

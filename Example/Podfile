@@ -1,11 +1,17 @@
+platform :ios, '10.0'
 use_frameworks!
+inhibit_all_warnings!
+
+def common_pods
+  pod 'BaseVCKit', :path => '../'
+end
 
 target 'BaseVCKit_Example' do
-  pod 'BaseVCKit', :path => '../'
+    common_pods
+end
 
-  target 'BaseVCKit_Tests' do
-    inherit! :search_paths
+target 'BaseVCKit_Tests' do
+    common_pods
 
     pod 'FBSnapshotTestCase'
-  end
 end

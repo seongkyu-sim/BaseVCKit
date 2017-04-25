@@ -14,8 +14,6 @@ import SnapKit
  */
 
 public protocol KeyboardObserverable: class {
-    func addKeyboardAnimationObserver()
-    func removeKeyboardAnimationObserver()
     func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions)
 }
 
@@ -47,11 +45,12 @@ extension KeyboardObserverable where Self: UIViewController {
         return ob
     }
 
-    public func addKeyboardAnimationObserver() {
+    public func startKeyboardAnimationObserveWithViewWillAppear() {
         _ = keyboardOb
     }
 
-    public func removeKeyboardAnimationObserver() {
+    public func stopKeyboardAnimationObserveWithViewWillDisAppear() {
+        self.view.endEditing(true) // make dismiss keyboard before UIViewController
         NotificationCenter.default.removeObserver(keyboardOb)
     }
 
@@ -107,6 +106,5 @@ extension KeyboardSanpable where Self: UIViewController {
         }
         return animations
     }
-
     public func keyboardFollowViewUpdateContraintsAnimationCompleted(finished: Bool) {}
 }
