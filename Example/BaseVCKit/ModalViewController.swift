@@ -17,6 +17,15 @@ class ModalViewController: BaseViewController {
         self.view.addSubview(v)
         return v
     }()
+    fileprivate lazy var modalBtn: UIButton = { [unowned self] in
+        let v = UIButton()
+        v.setTitle("Modal", for: .normal)
+        v.backgroundColor = .lightGray
+        v.setTitle("clicked", for: .highlighted)
+        v.addTarget(self, action: #selector(self.modal), for: .touchUpInside)
+        self.view.addSubview(v)
+        return v
+        }()
     fileprivate lazy var doneBtn: UIButton = { [unowned self] in
         let v = UIButton()
         v.setTitle("Done", for: .normal)
@@ -47,6 +56,13 @@ class ModalViewController: BaseViewController {
             make.height.equalTo(40)
         }
 
+        modalBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(marginH)
+            make.right.equalTo(-marginH)
+            make.height.equalTo(70)
+            make.centerY.equalToSuperview()
+        }
+
         doneBtn.snp.makeConstraints { (make) in
             make.left.equalTo(marginH)
             make.right.equalTo(-marginH)
@@ -59,6 +75,10 @@ class ModalViewController: BaseViewController {
 
     @objc private func done(sender:UIButton!) {
         view.endEditing(true)
+    }
+
+    @objc private func modal(sender:UIButton!) {
+        modal(ModalViewController())
     }
 }
 

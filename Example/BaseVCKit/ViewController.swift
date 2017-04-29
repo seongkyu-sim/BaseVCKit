@@ -16,7 +16,6 @@ class ViewController: BaseViewController {
         v.backgroundColor = .lightGray
         v.setTitle("clicked", for: .highlighted)
         v.addTarget(self, action: #selector(self.done), for: .touchUpInside)
-
         self.view.addSubview(v)
         return v
         }()
@@ -47,8 +46,6 @@ class ViewController: BaseViewController {
 
     @objc private func done(sender:UIButton!) {
         modal(ModalViewController())
-
-        
     }
 }
 

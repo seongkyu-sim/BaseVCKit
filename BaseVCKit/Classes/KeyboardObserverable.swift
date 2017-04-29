@@ -17,56 +17,59 @@ public protocol KeyboardObserverable: class {
     func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions)
 }
 
+private var keyboardChangeObserverKey = "keyboardChangeObserver"
+
 extension KeyboardObserverable where Self: UIViewController {
 
-    private var keyboardOb: NSObjectProtocol {
-        return associatedObject(self, key: "keyboardAnimationObserver", initial: keyboardObInitial)
+    private var keyboardOb: NSObjectProtocol? {
+        get {
+            return objc_getAssociatedObject(self, &keyboardChangeObserverKey) as? NSObjectProtocol
+        }
+        set {
+            willChangeValue(forKey: keyboardChangeObserverKey)
+            if newValue == nil {
+                // to clear observer
+                objc_setAssociatedObject(self, &keyboardChangeObserverKey, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            }else {
+                objc_setAssociatedObject(self, &keyboardChangeObserverKey, newValue as NSObjectProtocol?, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+            }
+            didChangeValue(forKey: keyboardChangeObserverKey)
+        }
     }
 
-    private func keyboardObInitial() -> NSObjectProtocol {
-        let ob = NotificationCenter.default.addObserver(
+    public func startKeyboardAnimationObserveWithViewWillAppear() {
+
+        keyboardOb = NotificationCenter.default.addObserver(
             forName: NSNotification.Name.UIKeyboardWillChangeFrame,
             object: nil,
             queue: OperationQueue.main,
             using: { [weak self] (notification) in
-                if let userInfo = notification.userInfo,
+                guard let userInfo = notification.userInfo,
                     let frame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
                     let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
                     let c = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt,
                     let keyboardFrame = self?.view.convert(frame, from: nil),
-                    let viewBounds = self?.view.bounds {
-                    let newBottomOffset = viewBounds.maxY - keyboardFrame.minY
-                    let animationType: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: c)
-                    self?.willAnimateKeyboard(keyboardTargetHeight: newBottomOffset, duration: duration, animationType: animationType)
-                } else {
-                    print("!!! Invalid conditions for UIKeyboardWillChangeFrameNotification")
+                    let viewBounds = self?.view.bounds else {
+                        return
                 }
-        })
-        return ob
-    }
 
-    public func startKeyboardAnimationObserveWithViewWillAppear() {
-        _ = keyboardOb
+                let newBottomOffset = viewBounds.maxY - keyboardFrame.minY
+                let animationType: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: c)
+                self?.willAnimateKeyboard(keyboardTargetHeight: newBottomOffset, duration: duration, animationType: animationType)
+        })
     }
 
     public func stopKeyboardAnimationObserveWithViewWillDisAppear() {
+
         self.view.endEditing(true) // make dismiss keyboard before UIViewController
-        NotificationCenter.default.removeObserver(keyboardOb)
+        if let ob = keyboardOb {
+            NotificationCenter.default.removeObserver(ob)
+            keyboardOb = nil
+        }
     }
 
     public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions) {}
 }
-
-// Association
-private func associatedObject<T: AnyObject>(_ host: AnyObject, key: UnsafeRawPointer, initial: () -> T) -> T {
-    var value = objc_getAssociatedObject(host, key) as? T
-    if value == nil {
-        value = initial()
-        objc_setAssociatedObject(host, key, value, .OBJC_ASSOCIATION_RETAIN)
-    }
-    return value!
-}
-
 
 // + SnapKit
 public protocol KeyboardSanpable: KeyboardObserverable {
@@ -95,6 +98,7 @@ extension KeyboardSanpable where Self: UIViewController {
     }
 
     public func keyboardFollowViewUpdateContraintsAnimations(keyboardTargetHeight: CGFloat) -> (()->())? {
+        guard let _ = self.view.window else { return nil } // isVisible
         guard let v = keyboardFollowView, !v.constraints.isEmpty else { return nil }
 
         let animations: () -> () = {
