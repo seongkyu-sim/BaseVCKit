@@ -10,12 +10,21 @@ import UIKit
 
 class ViewController: BaseViewController {
 
-    fileprivate lazy var doneBtn: UIButton = { [unowned self] in
+    fileprivate lazy var modalBtn: UIButton = { [unowned self] in
         let v = UIButton()
-        v.setTitle("Done", for: .normal)
+        v.setTitle("Modal", for: .normal)
         v.backgroundColor = .lightGray
         v.setTitle("clicked", for: .highlighted)
-        v.addTarget(self, action: #selector(self.done), for: .touchUpInside)
+        v.addTarget(self, action: #selector(self.modal), for: .touchUpInside)
+        self.view.addSubview(v)
+        return v
+        }()
+    fileprivate lazy var pushBtn: UIButton = { [unowned self] in
+        let v = UIButton()
+        v.setTitle("Push", for: .normal)
+        v.backgroundColor = .lightGray
+        v.setTitle("clicked", for: .highlighted)
+        v.addTarget(self, action: #selector(self.push), for: .touchUpInside)
         self.view.addSubview(v)
         return v
         }()
@@ -24,6 +33,7 @@ class ViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureBackOrCloseOnNavBar()
         layoutSubViews()
     }
 
@@ -31,23 +41,34 @@ class ViewController: BaseViewController {
     // MARK: - Layout
 
     private func layoutSubViews() {
-        let marginH: CGFloat = 20
+        let inset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
 
-        doneBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(marginH)
-            make.right.equalTo(-marginH)
+        modalBtn.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview().inset(inset)
             make.height.equalTo(70)
             make.centerY.equalToSuperview()
+        }
+
+        pushBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(modalBtn.snp.bottom).offset(40)
+            make.left.right.equalToSuperview().inset(inset)
+            make.height.equalTo(70)
         }
     }
 
 
     // MARK: - Actions
 
-    @objc private func done(sender:UIButton!) {
+    @objc private func modal(sender:UIButton!) {
         modal(ModalViewController())
     }
+
+    @objc private func push(sender:UIButton!) {
+        push(ModalViewController())
+    }
 }
+
+
 
 
 

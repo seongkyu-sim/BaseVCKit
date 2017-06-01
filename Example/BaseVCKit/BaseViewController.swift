@@ -37,4 +37,13 @@ extension BaseViewController: NavButtonConfigurable {
         return icon
     }
     */
+
+    var backButtonIcon: UIImage? {
+        let icon = ImageAssets.arrowLeftIcon
+        return icon
+    }
+
+    var backButtonTitle: String? { return "" }
 }
+
+
