@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
 
     public func setAttributedText(fullText: String, highlightText: String, highlightColor: UIColor? = nil, highlightFontWeight: CGFloat? = nil) {
         let range = (fullText as NSString).range(of: highlightText)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UITabBar {
+public extension UITabBar {
 
     public func showDot(itemIndex index: Int, color: UIColor? = UIColor.red) {
 

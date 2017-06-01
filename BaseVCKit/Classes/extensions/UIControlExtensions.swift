@@ -9,26 +9,26 @@
 import UIKit
 
 // a proxy class
-internal class DHTargetActionProxy: UIView {
+public class TargetActionProxy: UIView {
     // a block that will be called
-    internal var _action: (AnyObject) -> ()
+    public var _action: (AnyObject) -> ()
 
-    internal init(controlEvents: UIControlEvents, action: @escaping (AnyObject) -> ()) {
+    public init(controlEvents: UIControlEvents, action: @escaping (AnyObject) -> ()) {
         _action = action
         super.init(frame: CGRect.zero)
         self.tag = Int(controlEvents.rawValue)
     }
 
-    internal required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    internal func action(_ sender: AnyObject) {
+    public func action(_ sender: AnyObject) {
         _action(sender)
     }
 }
 
-extension UIControl {
+public extension UIControl {
 
     /**
      A helper method that allows a UIControl subclass to perform a block when a controlEvent is recieved
@@ -88,7 +88,7 @@ extension CallBackTargetAction where Self: UIControl {
     }
 
     private func _addActionToView(tag: UInt, action: @escaping (AnyObject) -> ()) {
-        let foo = DHTargetActionProxy(controlEvents: UIControlEvents(rawValue: tag), action: action)
+        let foo = TargetActionProxy(controlEvents: UIControlEvents(rawValue: tag), action: action)
 
         // remove previous if it exists
         viewWithTag(Int(tag))?.removeFromSuperview()
@@ -97,6 +97,6 @@ extension CallBackTargetAction where Self: UIControl {
         self.addSubview(foo)
         
         // add target to button.  Target instance is a proxy object and it calls a selector beloing to that proxy object.
-        addTarget(foo, action: #selector(DHTargetActionProxy.action(_:)), for: UIControlEvents(rawValue: tag))
+        addTarget(foo, action: #selector(TargetActionProxy.action(_:)), for: UIControlEvents(rawValue: tag))
     }
 }

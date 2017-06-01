@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIButton {
+public extension UIButton {
 
     // MARK: - Configure Helper
 
@@ -82,7 +82,7 @@ extension UIButton {
 
 
 
-extension UIColor {
+public extension UIColor {
     public func withRecursiveAlphaComponent(_ alphaComponent: CGFloat) -> UIColor {
         var resultColor = self.withAlphaComponent(alphaComponent)
         if let oldComponent = self.cgColor.components?.last, oldComponent != 1 { // transparency color

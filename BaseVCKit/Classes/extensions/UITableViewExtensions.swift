@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UITableView {
+public extension UITableView {
 
     public func isLastRow(at indexPath: IndexPath) -> Bool {
         let lastSectionIndex:Int = self.numberOfSections-1

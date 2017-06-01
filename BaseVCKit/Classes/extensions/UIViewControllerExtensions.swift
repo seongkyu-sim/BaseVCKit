@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
 
     // MARK: - Dismiss keyboard with touch up background
 
@@ -17,7 +17,7 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
 
-    private func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
 

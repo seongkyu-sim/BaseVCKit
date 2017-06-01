@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIApplication {
+public extension UIApplication {
 
     public class func topVC() -> UIViewController? {
         guard let rootVC = UIApplication.shared.delegate?.window??.rootViewController else { return nil }

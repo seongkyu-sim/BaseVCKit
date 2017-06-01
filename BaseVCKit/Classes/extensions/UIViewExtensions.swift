@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
 
     public var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self

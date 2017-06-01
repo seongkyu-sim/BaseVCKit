@@ -9,22 +9,7 @@
 import UIKit
 
 
-extension UIView {
-
-    private struct AssociatedKeys {
-        static var singleTapAlphaEffectValueKey = "hasSingleTapAlphaEffectValue"
-    }
-
-    private var singleTapAlphaEffectValue: CGFloat? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.singleTapAlphaEffectValueKey) as? CGFloat
-        }
-        set {
-            willChangeValue(forKey: "singleTapAlphaEffectValue")
-            objc_setAssociatedObject(self, &AssociatedKeys.singleTapAlphaEffectValueKey, newValue as CGFloat?, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            didChangeValue(forKey: "singleTapAlphaEffectValue")
-        }
-    }
+public extension UIView {
 
     typealias TapResponseClosure = (_ tap: UITapGestureRecognizer) -> Void
     typealias PanResponseClosure = (_ pan: UIPanGestureRecognizer) -> Void
@@ -101,10 +86,6 @@ extension UIView {
     }
 
     // MARK: Taps
-    public func addSingleTapAlphaEffectedGestureRecognizerWithResponder(responder: @escaping TapResponseClosure) {
-        self.singleTapAlphaEffectValue = 0.8
-        self.addTapGestureRecognizerForNumberOfTaps(withResponder: responder)
-    }
 
     public func addSingleTapGestureRecognizerWithResponder(responder: @escaping TapResponseClosure) {
         self.addTapGestureRecognizerForNumberOfTaps(withResponder: responder)
@@ -282,33 +263,6 @@ extension UIView {
                 }
             }
             return false
-        }
-    }
-
-
-    // MARK: - Feedback
-
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-
-        if let dim = singleTapAlphaEffectValue {
-            self.alpha = dim
-        }
-    }
-
-    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-
-        if let _ = singleTapAlphaEffectValue {
-            self.alpha = 1
-        }
-    }
-
-    open override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
-        super.touchesCancelled(touches!, with: event)
-
-        if let _ = singleTapAlphaEffectValue {
-            self.alpha = 1
         }
     }
 }

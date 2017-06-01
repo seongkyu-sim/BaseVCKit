@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
 
     public func image(withColor color: UIColor) -> UIImage {
         let newImage = image(withColor: color, size: self.size)

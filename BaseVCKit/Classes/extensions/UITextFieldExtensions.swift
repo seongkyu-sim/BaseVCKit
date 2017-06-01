@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension UITextField
-{
+public extension UITextField {
+    
     private struct AssociatedKeys {
         static var underLineKey = "underLine"
     }
