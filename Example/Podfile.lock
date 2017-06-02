@@ -1,5 +1,5 @@
 PODS:
-  - BaseVCKit (0.3.1):
+  - BaseVCKit (0.4.5):
     - Kingfisher (~> 3.0)
     - SnapKit (~> 3.0)
   - FBSnapshotTestCase (2.1.4):
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BaseVCKit: ef0332486dab377825f847d20563c454e64e4cc7
+  BaseVCKit: b87662f9ad1fb1c0f5b440394d0e1f6c83f4494e
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Kingfisher: 6729a0baaa458245bfb8cd5a1296c71c10d6eb6c
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
