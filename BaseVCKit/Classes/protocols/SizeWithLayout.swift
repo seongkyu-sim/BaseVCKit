@@ -12,7 +12,7 @@ import UIKit
  * For get size of UI element with 'initSubViewConstraints()'
  */
 public protocol SizeWithLayout: class {}
-extension SizeWithLayout where Self: UIView {
+public extension SizeWithLayout where Self: UIView {
     public var size: CGSize {
         setNeedsLayout()
         layoutIfNeeded()

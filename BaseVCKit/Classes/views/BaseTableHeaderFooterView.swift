@@ -16,7 +16,7 @@ public class BaseTableHeaderFooterView: UIView {
         return v
         }()
 
-    override init(frame: CGRect) { // for using CustomView in code
+    public override init(frame: CGRect) { // for using CustomView in code
         super.init(frame: frame)
 
         self.commonInit()

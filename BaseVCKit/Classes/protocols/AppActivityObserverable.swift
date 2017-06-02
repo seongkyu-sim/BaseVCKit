@@ -21,7 +21,7 @@ public protocol AppActivityObserverable: class {
     func appActivityUpdated(appActivityType: AppActivityType)
 }
 
-extension AppActivityObserverable where Self: AnyObject {
+public extension AppActivityObserverable where Self: AnyObject {
 
     private var appDidBecomeActiveOb: NSObjectProtocol {
         return associatedObject(self, key: "appDidEnterBackgroundObserver", initial: observerInitial(appActivityType: .didBecomeActive))

@@ -48,7 +48,7 @@ public class ProfileImageView: UIView {
 
     private var bgColor: UIColor
     private var placeHolderIcon: UIImage
-    init(bgColor bgColor_: UIColor, placeHolderIcon placeHolderIcon_: UIImage) {
+    public init(bgColor bgColor_: UIColor, placeHolderIcon placeHolderIcon_: UIImage) {
 
         bgColor = bgColor_
         placeHolderIcon = placeHolderIcon_
