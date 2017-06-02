@@ -8,9 +8,9 @@
 
 import UIKit
 
-class SeparatorView: UIView {
+public class SeparatorView: UIView {
 
-    var lineColor: UIColor {
+    public var lineColor: UIColor {
         didSet {
             if dashedLine {
                 setNeedsDisplay()
@@ -19,10 +19,10 @@ class SeparatorView: UIView {
             }
         }
     }
-    var lineWidth: CGFloat
-    var dashedLine: Bool
-    var isVerticalLine: Bool
-    init(lineColor lineColor_: UIColor, lineWidth lineWidth_: CGFloat? = nil, dashedLine dashedLine_: Bool = false, isVerticalLine isVerticalLine_: Bool = false) {
+    public var lineWidth: CGFloat
+    public var dashedLine: Bool
+    public var isVerticalLine: Bool
+    public init(lineColor lineColor_: UIColor, lineWidth lineWidth_: CGFloat? = nil, dashedLine dashedLine_: Bool = false, isVerticalLine isVerticalLine_: Bool = false) {
         if let h = lineWidth_ {
             lineWidth = h
         }else {
@@ -41,12 +41,12 @@ class SeparatorView: UIView {
         commonInit()
         configureConstraints()
     }
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
 
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.draw(rect)
 
         if dashedLine {
@@ -79,7 +79,7 @@ class SeparatorView: UIView {
 
     // MARK: - Layout
 
-    func configureConstraints() {
+    private func configureConstraints() {
         if isVerticalLine {
             self.snp.makeConstraints { (make) in
                 make.width.equalTo(lineWidth)
@@ -94,7 +94,7 @@ class SeparatorView: UIView {
 
     // MARK: - Init
 
-    func commonInit() {
+    private func commonInit() {
 
         isUserInteractionEnabled = false
 
