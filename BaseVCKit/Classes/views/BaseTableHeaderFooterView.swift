@@ -16,13 +16,13 @@ open class BaseTableHeaderFooterView: UIView {
         return v
         }()
 
-    open override init(frame: CGRect) { // for using CustomView in code
+    public override init(frame: CGRect) { // for using CustomView in code
         super.init(frame: frame)
 
         self.commonInit()
     }
 
-    open required init?(coder aDecoder: NSCoder) { // for using CustomView in IB
+    public required init?(coder aDecoder: NSCoder) { // for using CustomView in IB
         super.init(coder: aDecoder)
 
         self.commonInit()
