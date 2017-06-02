@@ -8,9 +8,9 @@
 
 import UIKit
 
-class BaseTableHeaderFooterView: UIView {
+public class BaseTableHeaderFooterView: UIView {
 
-    lazy var contentView: UIView = { [unowned self] in
+    public lazy var contentView: UIView = { [unowned self] in
         let v = UIView()
         self.addSubview(v)
         return v
@@ -22,26 +22,26 @@ class BaseTableHeaderFooterView: UIView {
         self.commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) { // for using CustomView in IB
+    public required init?(coder aDecoder: NSCoder) { // for using CustomView in IB
         super.init(coder: aDecoder)
 
         self.commonInit()
     }
 
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
 
         self.frame.size = contentView.frame.size
     }
 
-    override func willMove(toSuperview newSuperview: UIView?) {
+    public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
 
         setNeedsLayout()
         layoutIfNeeded()
     }
 
-    internal func commonInit() {
+    public func commonInit() {
         backgroundColor = UIColor.white
         configureConstraints()
     }
@@ -49,7 +49,7 @@ class BaseTableHeaderFooterView: UIView {
 
     // MARK: - Layout
 
-    internal func configureConstraints() {
+    public func configureConstraints() {
         contentView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
         }

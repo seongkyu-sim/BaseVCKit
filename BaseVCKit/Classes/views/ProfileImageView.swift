@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-final class ProfileImageView: UIView {
+public class ProfileImageView: UIView {
 
     public var url: URL? {
         didSet {
@@ -57,7 +57,7 @@ final class ProfileImageView: UIView {
         commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -78,7 +78,7 @@ final class ProfileImageView: UIView {
         return l
     }()
 
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         if externalBorderWidth > 0 {

@@ -11,9 +11,9 @@ import UIKit
 /**
  * For get size of UI element with 'initSubViewConstraints()'
  */
-protocol SizeWithLayout: class {}
+public protocol SizeWithLayout: class {}
 extension SizeWithLayout where Self: UIView {
-    var size: CGSize {
+    public var size: CGSize {
         setNeedsLayout()
         layoutIfNeeded()
         return self.bounds.size
