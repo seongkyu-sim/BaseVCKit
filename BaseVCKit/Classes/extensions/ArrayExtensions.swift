@@ -1,9 +1,9 @@
 //
 //  ArrayExtensions.swift
-//  Pods
+//  BaseVCKit
 //
 //  Created by frank on 2017. 5. 31..
-//
+//  Copyright © 2016년 colavo. All rights reserved.
 //
 
 import Foundation

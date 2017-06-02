@@ -1,9 +1,9 @@
 //
 //  EasyNavigatable.swift
-//  Pods
+//  BaseVCKit
 //
 //  Created by frank on 2017. 4. 19..
-//
+//  Copyright © 2016년 colavo. All rights reserved.
 //
 
 import UIKit

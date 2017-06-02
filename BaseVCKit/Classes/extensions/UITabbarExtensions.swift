@@ -1,9 +1,9 @@
 //
 //  UITabbarExtensions.swift
-//  FrankUIKit
+//  BaseVCKit
 //
 //  Created by frank on 2015. 11. 10..
-//  Copyright © 2015년 treetopworks. All rights reserved.
+//  Copyright © 2016년 colavo. All rights reserved.
 //
 
 import UIKit

@@ -1,12 +1,14 @@
 //
 //  UIButtonExtensions.swift
-//  Pods
+//  BaseVCKit
 //
 //  Created by frank on 2017. 5. 31..
-//
+//  Copyright © 2016년 colavo. All rights reserved.
 //
 
 import UIKit
+
+fileprivate let intervalImageBetweenText: CGFloat = 6
 
 public extension UIButton {
 
@@ -27,6 +29,11 @@ public extension UIButton {
         btn.setRoundCorner(radius: cornerRadius)
         btn.setStatesTitleColor(withNormalColor: titleColor)
         btn.setStatesBackground(withNormalColor: bgColor)
+
+        if let _ = image, let _ = title {
+            btn.imageEdgeInsets.right = intervalImageBetweenText/2
+            btn.titleEdgeInsets.left = intervalImageBetweenText/2
+        }
         return btn
     }
 
@@ -70,24 +77,17 @@ public extension UIButton {
      * Should set image and title before call 'minSize'
      */
     public var minSize: CGSize {
-        var size = CGSize(width: 21, height: 21) // icon only
-        if let _ = title(for: .normal) {
-            let marginH: CGFloat = 8
-            let btnW = self.titleLabel!.intrinsicContentSize.width + marginH*2
-            size = CGSize(width: btnW, height: 30)
+        guard let _ = title(for: .normal) else {
+            return CGSize(width: 21, height: 21) // icon only
         }
-        return size
-    }
-}
 
-
-
-public extension UIColor {
-    public func withRecursiveAlphaComponent(_ alphaComponent: CGFloat) -> UIColor {
-        var resultColor = self.withAlphaComponent(alphaComponent)
-        if let oldComponent = self.cgColor.components?.last, oldComponent != 1 { // transparency color
-            resultColor = self.withAlphaComponent(oldComponent * alphaComponent)
+        let marginH: CGFloat = 8
+        var w: CGFloat = marginH*2
+        if let img = image(for: .normal) {
+            w += intervalImageBetweenText
+            w += img.size.width
         }
-        return resultColor
+        w += self.titleLabel!.intrinsicContentSize.width
+        return CGSize(width: w, height: 30)
     }
 }
