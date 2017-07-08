@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class BaseTableHeaderFooterView: UIView {
+open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
 
     open lazy var contentView: UIView = { [unowned self] in
         let v = UIView()
@@ -34,7 +34,7 @@ open class BaseTableHeaderFooterView: UIView {
         self.frame.size = contentView.frame.size
     }
 
-    open override func willMove(toSuperview newSuperview: UIView?) {
+    open override func willMove(toSuperview newSuperview: UIView?) { // should remove this code
         super.willMove(toSuperview: newSuperview)
 
         setNeedsLayout()
@@ -53,5 +53,39 @@ open class BaseTableHeaderFooterView: UIView {
         contentView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
         }
+    }
+
+
+    // MARK: - Public Mehtods
+
+    open func setHeaderView(onTableView tableView: UITableView) {
+        setHeaderFooter(isHeader: true, onTatbleView: tableView)
+    }
+
+    open func setFooterView(onTableView tableView: UITableView) {
+        setHeaderFooter(isHeader: false, onTatbleView: tableView)
+    }
+
+
+    // MARK: - Helper
+
+    private func setHeaderFooter(isHeader: Bool, onTatbleView tableView: UITableView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        if isHeader {
+            tableView.tableHeaderView = self
+        }else {
+            tableView.tableFooterView = self
+        }
+        self.snp.makeConstraints { (make) in
+            make.width.equalTo(tableView)
+            make.height.equalTo(self.size.height)
+        }
+        if isHeader {
+            tableView.tableHeaderView = self
+        }else {
+            tableView.tableFooterView = self
+        }
+        self.translatesAutoresizingMaskIntoConstraints = true
+        self.frame.origin.x = 0
     }
 }
