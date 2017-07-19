@@ -11,12 +11,41 @@ import BaseVCKit
 
 class BaseViewController: UIViewController, EasyNavigatable {
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
+
+        view.backgroundColor = UIColor.white
         configureBackOrCloseOnNavBar()
+        initSubViews()
     }
+
+    public var didInitSubViews:Bool = false
+
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if !didInitSubViews {
+            initSubViewConstraints()
+        }
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if !didInitSubViews {
+            didInitSubViewsConstraints()
+            didInitSubViews = true
+        }
+    }
+
+
+    // MARK: - Init Subviews with viewDidLayoutSubviews
+
+    func initSubViews() {
+        view.backgroundColor = .white
+    }
+    func initSubViewConstraints() {}
+    func didInitSubViewsConstraints() {}
 }
 
 
