@@ -155,7 +155,7 @@ extension BaseTableHeaderFooterView {
         guard isEnableStickBgToTop else { return }
 
         if keyPath == KVOKeyHelper.scrollViewContentOffset {
-            guard let nsPoint = change?[NSKeyValueChangeKey.newKey], let offSet = (nsPoint as AnyObject).cgPointValue else { return }
+            guard let nsPoint = change?[NSKeyValueChangeKey.newKey], let _ = (nsPoint as AnyObject).cgPointValue else { return }
             stickBackgroundToTop()
         }
     }
