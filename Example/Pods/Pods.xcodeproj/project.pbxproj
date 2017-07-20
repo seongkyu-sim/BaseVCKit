@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		004E9038CD69F56B721023DE93708D7E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47274FE40591642E8A28D54AC082C69 /* ImageCache.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0103A0C51F20706400E1921C /* UILableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103A0C41F20706400E1921C /* UILableExtensions.swift */; };
 		01D00D381F0B58CB00540501 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D00D371F0B58CB00540501 /* UIBarButtonItemExtensions.swift */; };
 		026C15ED632E7A2A82EFCA8AE49754C7 /* Pods-BaseVCKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 172A1B6B81D073242E7509FAE04C5E4E /* Pods-BaseVCKit_Example-dummy.m */; };
 		051A816D6DD0CAE13496DDCFE0829167 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A280321A03DD21D58BEBD2E55F3CF19 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -198,6 +199,7 @@
 
 /* Begin PBXFileReference section */
 		0083CA1C4E3F6A51AB4B359EE180C901 /* Pods-BaseVCKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BaseVCKit_Example-frameworks.sh"; sourceTree = "<group>"; };
+		0103A0C41F20706400E1921C /* UILableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILableExtensions.swift; sourceTree = "<group>"; };
 		01D00D371F0B58CB00540501 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		01FF68DC30098748CD90D88F2CAFEA67 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		052B91C1B4D0E2407D7B594E28C90BE1 /* Kingfisher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kingfisher.modulemap; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				3C43910EE08C9AAAD19870E05FAC265A /* UIViewExtensions.swift */,
 				4C9DE3FAF6C4F41F85A089A0CC4AF221 /* UIViewGestureExtensions.swift */,
 				01D00D371F0B58CB00540501 /* UIBarButtonItemExtensions.swift */,
+				0103A0C41F20706400E1921C /* UILableExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0103A0C51F20706400E1921C /* UILableExtensions.swift in Sources */,
 				34F88AA5ABCD3526E8B1AE39EE5F1B3C /* AppActivityObserverable.swift in Sources */,
 				169619D5E0408EE83C1D68C1949B451B /* ArrayExtensions.swift in Sources */,
 				E0B6B7ABE7349A699A9C945B768B1F65 /* BaseTableHeaderFooterView.swift in Sources */,

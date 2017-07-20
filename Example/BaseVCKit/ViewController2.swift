@@ -84,20 +84,13 @@ extension ViewController2 {
     class TableHeaderView: BaseTableHeaderFooterView {
 
         private lazy var nameLb: UILabel = {
-            let v = UILabel()
+            let v = UILabel.configureLabel(color: .black, size: 20)
             v.textAlignment = .center
-            v.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightRegular)
-            v.textColor = UIColor.black
-            v.numberOfLines = 0
             self.contentView.addSubview(v)
             return v
         }()
         private lazy var descLb: UILabel = {
-            let v = UILabel()
-            v.textAlignment = .center
-            v.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightMedium)
-            v.textColor = UIColor.lightGray
-            v.numberOfLines = 0
+            let v = UILabel.configureLabel(color: .lightGray, size: 13, weight: UIFontWeightMedium)
             v.textAlignment = .center
             self.contentView.addSubview(v)
             return v

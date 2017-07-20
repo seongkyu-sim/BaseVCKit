@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import ObjectiveC.runtime
-
 
 open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
 
@@ -54,18 +52,12 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
         setNeedsLayout()
         layoutIfNeeded()
 
-        if let superview = superview {
-            removeObserversFromView(view: superview)
-        }
-        if let newSuperview = newSuperview {
-            addScrollViewObservers(view: newSuperview)
-        }
+        if let superview = superview { removeObserversFromView(view: superview) }
+        if let newSuperview = newSuperview { addScrollViewObservers(view: newSuperview) }
     }
 
     deinit {
-        if let superview = superview {
-            removeObserversFromView(view: superview)
-        }
+        if let superview = superview { removeObserversFromView(view: superview) }
     }
 
 
@@ -125,18 +117,34 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
     }
 
 
-    // MARK: Observing
+    // MARK: - Stick Top
 
+    fileprivate func stickBackgroundToTop() {
+        guard let scrollView = self.superview as? UIScrollView else { return }
 
+        let insetTop = scrollView.contentInset.top
+        let offsetY = scrollView.contentOffset.y
+        var offsetTop = offsetY + insetTop
+        if offsetTop > 0 {
+            offsetTop = 0
+        }
+        bgView.snp.updateConstraints { (make) in
+            make.top.equalToSuperview().offset(offsetTop)
+        }
+    }
+}
 
-    private func removeObserversFromView(view: UIView) -> Void {
+// KVO
+extension BaseTableHeaderFooterView {
+
+    fileprivate func removeObserversFromView(view: UIView) -> Void {
         guard isEnableStickBgToTop else { return }
         assert(nil != view as? UIScrollView, "Self's superview must be kind of `UIScrollView`")
 
         view.removeObserver(self, forKeyPath: KVOKeyHelper.scrollViewContentOffset)
     }
 
-    private func addScrollViewObservers(view: UIView) -> Void {
+    fileprivate func addScrollViewObservers(view: UIView) -> Void {
         guard isEnableStickBgToTop else { return }
         assert(nil != view as? UIScrollView, "Self's superview must be kind of `UIScrollView`")
 
@@ -149,23 +157,6 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
         if keyPath == KVOKeyHelper.scrollViewContentOffset {
             guard let nsPoint = change?[NSKeyValueChangeKey.newKey], let offSet = (nsPoint as AnyObject).cgPointValue else { return }
             stickBackgroundToTop()
-        }
-    }
-
-
-    // MARK: - Stick
-
-    private func stickBackgroundToTop() {
-        guard let scrollView = self.superview as? UIScrollView else { return }
-
-        let insetTop = scrollView.contentInset.top
-        let offsetY = scrollView.contentOffset.y
-        var offsetTop = offsetY + insetTop
-        if offsetTop > 0 {
-            offsetTop = 0
-        }
-        bgView.snp.updateConstraints { (make) in
-            make.top.equalToSuperview().offset(offsetTop)
         }
     }
 }
