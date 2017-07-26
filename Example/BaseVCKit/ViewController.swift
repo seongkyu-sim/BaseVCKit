@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import BaseVCKit
 
 class ViewController: BaseViewController {
 
+    private lazy var lb: UILabel = {
+        let v = UILabel.configureLabel(color: UIColor.green, size: 18)
+        v.textAlignment = .center
+        v.text = "Strike through test"
+        self.view.addSubview(v)
+        return v
+    }()
     fileprivate lazy var modalBtn: UIButton = { [unowned self] in
         let v = UIButton()
         v.setTitle("Modal", for: .normal)
@@ -33,6 +41,11 @@ class ViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "title"
+
+        lb.renderStrikethrough(text: "Strike through test", color: UIColor.red)
+
+
         configureBackOrCloseOnNavBar()
         layoutSubViews()
     }
@@ -43,12 +56,15 @@ class ViewController: BaseViewController {
     private func layoutSubViews() {
         let inset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
 
+        lb.snp.makeConstraints { (make) in
+            make.top.equalTo(topLayoutGuide.snp.bottom).offset(40)
+            make.left.right.equalToSuperview().inset(inset)
+        }
         modalBtn.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview().inset(inset)
             make.height.equalTo(70)
             make.centerY.equalToSuperview()
         }
-
         pushBtn.snp.makeConstraints { (make) in
             make.top.equalTo(modalBtn.snp.bottom).offset(40)
             make.left.right.equalToSuperview().inset(inset)

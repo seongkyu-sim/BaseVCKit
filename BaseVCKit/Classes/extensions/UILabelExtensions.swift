@@ -38,18 +38,9 @@ public extension UILabel {
     public func renderStrikethrough(text:String?, color:UIColor = UIColor.black) {
         guard let text = text else { return }
 
-        let attributedText = NSAttributedString(string: text , attributes: [NSStrikethroughStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue, NSStrikethroughColorAttributeName: color])
+        let attributedText = NSMutableAttributedString(string: text , attributes: [NSStrikethroughStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue, NSStrikethroughColorAttributeName: color])
+        attributedText.addAttribute(NSBaselineOffsetAttributeName, value: 0, range: NSMakeRange(0, attributedText.length))
         self.attributedText = attributedText
-    }
-
-    public func setStrikethroughLineWidth(width: CGFloat) {
-        guard let text = self.text else { return }
-
-        let attributeString = NSMutableAttributedString(string: text)
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = width
-        attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.characters.count))
-        self.attributedText = attributeString
     }
 
 
