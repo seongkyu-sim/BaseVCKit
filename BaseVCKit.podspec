@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BaseVCKit'
-  s.version          = '0.5.2'
+  s.version          = '0.6.0'
   s.summary          = 'Useful utils for UIViewController'
 
 # This description is used to generate tags and improve search results.
@@ -36,6 +36,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  s.dependency 'SnapKit', '~> 3.0'
-  s.dependency 'Kingfisher', '~> 3.0'
+  s.dependency 'SnapKit', '~> 4.0.0'
+  s.dependency 'Kingfisher', '~> 4.0.0'
 end

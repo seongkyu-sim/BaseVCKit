@@ -23,7 +23,7 @@ public class TargetActionProxy: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func action(_ sender: AnyObject) {
+    @objc public func action(_ sender: AnyObject) {
         _action(sender)
     }
 }

@@ -174,7 +174,7 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = barButton
     }
 
-    func dismissAction() {
+    @objc func dismissAction() {
         self.dismiss(animated: true, completion: nil)
     }
 }

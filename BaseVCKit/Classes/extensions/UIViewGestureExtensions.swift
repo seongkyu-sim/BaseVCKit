@@ -35,8 +35,8 @@ public extension UIView {
             let UIViewClass: AnyClass! = NSClassFromString("UIView")
             let originalSelector = #selector(UIView.removeFromSuperview)
             let swizzleSelector = #selector(UIView.swizzled_removeFromSuperview)
-            let original: Method = class_getInstanceMethod(UIViewClass, originalSelector)
-            let swizzle: Method = class_getInstanceMethod(UIViewClass, swizzleSelector)
+            let original: Method = class_getInstanceMethod(UIViewClass, originalSelector)!
+            let swizzle: Method = class_getInstanceMethod(UIViewClass, swizzleSelector)!
             method_exchangeImplementations(original, swizzle)
             // }
         }
@@ -45,13 +45,13 @@ public extension UIView {
             let UIViewClass: AnyClass! = NSClassFromString("UIView")
             let originalSelector = #selector(UIView.removeFromSuperview)
             let swizzleSelector = #selector(UIView.swizzled_removeFromSuperview)
-            let original: Method = class_getInstanceMethod(UIViewClass, originalSelector)
-            let swizzle: Method = class_getInstanceMethod(UIViewClass, swizzleSelector)
+            let original: Method = class_getInstanceMethod(UIViewClass, originalSelector)!
+            let swizzle: Method = class_getInstanceMethod(UIViewClass, swizzleSelector)!
             return true
             }()
     }
 
-    public func swizzled_removeFromSuperview() {
+    @objc public func swizzled_removeFromSuperview() {
         self.removeGestureRecognizersFromStorage()
         /*
         Will call the original representation of removeFromSuperview, not endless cycle:
@@ -108,7 +108,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    public func handleTap(sender: UITapGestureRecognizer) {
+    @objc public func handleTap(sender: UITapGestureRecognizer) {
         if let closureForTap = ClosureStorage.TapClosureStorage[sender] {
             closureForTap(sender)
         }
@@ -133,7 +133,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    public func handlePan(sender: UIPanGestureRecognizer) {
+    @objc public func handlePan(sender: UIPanGestureRecognizer) {
         if let closureForPan = ClosureStorage.PanClosureStorage[sender] {
             closureForPan(sender)
         }
@@ -185,7 +185,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    public func handleSwipe(sender: UISwipeGestureRecognizer) {
+    @objc public func handleSwipe(sender: UISwipeGestureRecognizer) {
         if let closureForSwipe = ClosureStorage.SwipeClosureStorage[sender] {
             closureForSwipe(sender)
         }
@@ -203,7 +203,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    public func handlePinch(sender: UIPinchGestureRecognizer) {
+    @objc public func handlePinch(sender: UIPinchGestureRecognizer) {
         if let closureForPinch = ClosureStorage.PinchClosureStorage[sender] {
             closureForPinch(sender)
         }
@@ -226,7 +226,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    public func handleLongPress(sender: UILongPressGestureRecognizer) {
+    @objc public func handleLongPress(sender: UILongPressGestureRecognizer) {
         if let closureForLongPinch = ClosureStorage.LongPressClosureStorage[sender] {
             closureForLongPinch(sender)
         }
@@ -244,7 +244,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    public func handleRotation(sender: UIRotationGestureRecognizer) {
+    @objc public func handleRotation(sender: UIRotationGestureRecognizer) {
         if let closureForRotation = ClosureStorage.RotationClosureStorage[sender] {
             closureForRotation(sender)
         }

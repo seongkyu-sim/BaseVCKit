@@ -18,14 +18,14 @@ public extension UIButton {
                     title: String?,
                     titleColor: UIColor = .white,
                     fontSize: CGFloat = 14,
-                    fontWeight: CGFloat = UIFontWeightLight ,
+                    fontWeight: CGFloat = UIFont.Weight.light.rawValue ,
                     bgColor: UIColor = .clear,
                     cornerRadius: CGFloat = 0) -> UIButton {
 
         let btn = UIButton(type: .custom)
         btn.setImage(image, for: .normal)
         btn.setTitle(title, for: UIControlState.normal)
-        btn.titleLabel!.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
+        btn.titleLabel!.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight(rawValue: fontWeight))
         btn.setRoundCorner(radius: cornerRadius)
         btn.setStatesTitleColor(withNormalColor: titleColor)
         btn.setStatesBackground(withNormalColor: bgColor)

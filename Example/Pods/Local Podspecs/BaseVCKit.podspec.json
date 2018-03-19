@@ -1,6 +1,6 @@
 {
   "name": "BaseVCKit",
-  "version": "0.4.5",
+  "version": "0.5.2",
   "summary": "Useful utils for UIViewController",
   "description": "BaseVCKit has potocols & extensions",
   "homepage": "https://github.com/seongkyu-sim/BaseVCKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/seongkyu-sim/BaseVCKit.git",
-    "tag": "0.4.5"
+    "tag": "0.5.2"
   },
   "platforms": {
     "ios": "10.0"
@@ -22,10 +22,10 @@
   "frameworks": "UIKit",
   "dependencies": {
     "SnapKit": [
-      "~> 3.0"
+      "~> 4.0.0"
     ],
     "Kingfisher": [
-      "~> 3.0"
+      "~> 4.0.0"
     ]
   }
 }

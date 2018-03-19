@@ -90,7 +90,7 @@ extension ViewController2 {
             return v
         }()
         private lazy var descLb: UILabel = {
-            let v = UILabel.configureLabel(color: .lightGray, size: 13, weight: UIFontWeightMedium)
+            let v = UILabel.configureLabel(color: .lightGray, size: 13, weight: UIFont.Weight.medium.rawValue)
             v.textAlignment = .center
             self.contentView.addSubview(v)
             return v
