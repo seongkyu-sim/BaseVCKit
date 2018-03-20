@@ -77,8 +77,9 @@ public protocol KeyboardSanpable: KeyboardObserverable {
     // set keyboardFollowView as 'done button' or 'text input'
     var keyboardFollowView: UIView? { get }
 
-    // set keyboardFollowOffset for vertical interval keyboardFollowView with Keyboard's top
-    var keyboardFollowOffset: CGFloat { get }
+    // set keyboardFollowOffsetForAppeared, keyboardFollowOffsetForDisappeared for vertical interval keyboardFollowView with Keyboard's top
+    var keyboardFollowOffsetForAppeared: CGFloat { get }
+    var keyboardFollowOffsetForDisappeared: CGFloat { get }
 
     func keyboardFollowViewUpdateContraintsAnimations(keyboardTargetHeight: CGFloat) -> (()->())?
     func keyboardFollowViewUpdateContraintsAnimationCompleted(finished: Bool)
@@ -87,7 +88,8 @@ public protocol KeyboardSanpable: KeyboardObserverable {
 extension KeyboardSanpable where Self: UIViewController {
 
     public var keyboardFollowView: UIView? { return nil }
-    public var keyboardFollowOffset: CGFloat { return 0 }
+    public var keyboardFollowOffsetForAppeared: CGFloat { return 0 }
+    public var keyboardFollowOffsetForDisappeared: CGFloat { return 0 }
 
     public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions) {
         guard let animations = self.keyboardFollowViewUpdateContraintsAnimations(keyboardTargetHeight: keyboardTargetHeight) else { return }
@@ -101,13 +103,9 @@ extension KeyboardSanpable where Self: UIViewController {
         guard let _ = self.view.window else { return nil } // isVisible
         guard let v = keyboardFollowView, !v.constraints.isEmpty else { return nil }
 
-        var bottomOffset = keyboardTargetHeight + self.keyboardFollowOffset
-        if #available(iOS 11.0, *) {
-            let isAppear: Bool = keyboardTargetHeight != 0
-            if isAppear {
-                bottomOffset = bottomOffset - self.view.safeAreaInsets.bottom
-            }
-        }
+        let isAppear: Bool = keyboardTargetHeight != 0
+        let followViewIntervalV = isAppear ? keyboardFollowOffsetForAppeared : keyboardFollowOffsetForDisappeared
+        let bottomOffset = keyboardTargetHeight + followViewIntervalV
 
         let animations: () -> () = {
             v.snp.updateConstraints({ (make) in
