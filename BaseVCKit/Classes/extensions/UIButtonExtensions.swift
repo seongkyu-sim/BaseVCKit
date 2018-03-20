@@ -90,4 +90,11 @@ public extension UIButton {
         w += self.titleLabel!.intrinsicContentSize.width
         return CGSize(width: w, height: 30)
     }
+
+
+    // MARK: - Size
+
+    public func widthWithoutEllipsis(paddingH: CGFloat) -> CGFloat {
+        return titleLabel!.intrinsicContentSize.width + paddingH*2
+    }
 }

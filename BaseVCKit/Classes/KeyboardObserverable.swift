@@ -101,10 +101,17 @@ extension KeyboardSanpable where Self: UIViewController {
         guard let _ = self.view.window else { return nil } // isVisible
         guard let v = keyboardFollowView, !v.constraints.isEmpty else { return nil }
 
+        var bottomOffset = keyboardTargetHeight + self.keyboardFollowOffset
+        if #available(iOS 11.0, *) {
+            let isAppear: Bool = keyboardTargetHeight != 0
+            if isAppear {
+                bottomOffset = bottomOffset - self.view.safeAreaInsets.bottom
+            }
+        }
+
         let animations: () -> () = {
-            let bottomOffset = -(keyboardTargetHeight + self.keyboardFollowOffset)
             v.snp.updateConstraints({ (make) in
-                make.bottom.equalToSuperview().offset(bottomOffset)
+                make.bottom.equalToSuperview().offset(-bottomOffset)
             })
             v.superview?.layoutIfNeeded()
         }
