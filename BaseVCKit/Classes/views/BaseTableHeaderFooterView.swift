@@ -80,6 +80,14 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
         contentView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
         }
+
+        /**
+         * fix: [Layout Constraints] Unable to simultaneously satisfy constraints.
+         * - if not set width, needs set width for labels in subviews
+         */
+        self.snp.makeConstraints { (make) in
+            make.width.equalTo(UIScreen.main.bounds.width)
+        }
     }
 
 
