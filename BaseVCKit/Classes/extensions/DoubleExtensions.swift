@@ -23,7 +23,7 @@ public extension Double {
     }
 
     public func placeCeil(place: Int) -> Double {
-        let tenCount = String(Int(self)).characters.count - place
+        let tenCount = String(Int(self)).count - place
         var adjustFate: Double = 1
         if tenCount > 0 {
             var k = 0

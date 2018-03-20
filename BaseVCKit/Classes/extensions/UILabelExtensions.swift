@@ -10,7 +10,7 @@ import UIKit
 
 public extension UILabel {
 
-    public func setAttributedText(fullText: String, highlightText: String, highlightColor: UIColor? = nil, highlightFontWeight: CGFloat? = nil) {
+    public func setAttributedText(fullText: String, highlightText: String, highlightColor: UIColor? = nil, highlightFontWeight: UIFont.Weight? = nil) {
         let range = (fullText as NSString).range(of: highlightText)
         let attributedString = NSMutableAttributedString(string:fullText)
 
@@ -25,7 +25,7 @@ public extension UILabel {
         }
         var font = UIFont.systemFont(ofSize: originFontSize, weight: UIFont.Weight.medium)
         if let highlightFontWeight = highlightFontWeight {
-            font = UIFont.systemFont(ofSize: originFontSize, weight: UIFont.Weight(rawValue: highlightFontWeight))
+            font = UIFont.systemFont(ofSize: originFontSize, weight: highlightFontWeight)
         }
         attributedString.addAttribute(NSAttributedStringKey.font, value: font , range: range)
 

@@ -84,7 +84,7 @@ extension VCPresentType where Self: UIViewController {
 
 // MARK: - NavigationButtonConfigurable
 
-public protocol NavButtonConfigurable: class, VCPresentType {
+public protocol NavButtonConfigurable: VCPresentType {
     var backButtonIcon: UIImage? { get }
     var backButtonTitle: String? { get }
     var closeButtonIcon: UIImage? { get }

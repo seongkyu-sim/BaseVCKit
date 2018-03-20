@@ -66,7 +66,7 @@ extension ViewController2: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as? UITableViewCell
+        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath)
         cell.textLabel?.text = "Row: \(indexPath.row)"
         return cell
     }
