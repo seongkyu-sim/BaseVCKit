@@ -56,14 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - 
 
 public enum CustomTabbar {
-    case home, setting
+    case home, editor, setting
     
     public static var tabVC: UITabBarController {
         return TabbarVCGenerator.tabVC(menuSpecs: self.allTabMenuSpec)
     }
 
     static var allTabMenuSpec: [TabbarVCGenerator.TabMenuSpec] {
-        return [self.home, self.setting].map{ $0.toMenuSpec }
+        return [self.home, self.editor, self.setting].map{ $0.toMenuSpec }
     }
 
     var toMenuSpec: TabbarVCGenerator.TabMenuSpec {
@@ -74,6 +74,9 @@ public enum CustomTabbar {
         case .home:
             vc = ViewController()
             systemItem = .search
+        case .editor:
+            vc = EditorVC()
+            systemItem = .bookmarks
         case .setting:
             vc = ViewController2()
             systemItem = .history

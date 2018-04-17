@@ -15,6 +15,7 @@ import SnapKit
 
 public protocol KeyboardObserverable: class {
     func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions)
+    func willChangeKeyboard(height: CGFloat)
 }
 
 private var keyboardChangeObserverKey = "keyboardChangeObserver"
@@ -56,6 +57,7 @@ extension KeyboardObserverable where Self: UIViewController {
                 let newBottomOffset = viewBounds.maxY - keyboardFrame.minY
                 let animationType: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: c)
                 self?.willAnimateKeyboard(keyboardTargetHeight: newBottomOffset, duration: duration, animationType: animationType)
+                self?.willChangeKeyboard(height: newBottomOffset)
         })
     }
 
@@ -69,6 +71,7 @@ extension KeyboardObserverable where Self: UIViewController {
     }
 
     public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions) {}
+    public func willChangeKeyboard(height: CGFloat) {}
 }
 
 // + SnapKit

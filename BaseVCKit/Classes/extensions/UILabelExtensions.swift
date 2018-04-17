@@ -10,6 +10,18 @@ import UIKit
 
 public extension UILabel {
 
+    public static func configureLabel(color:UIColor, size:CGFloat, weight: UIFont.Weight = UIFont.Weight.regular) -> UILabel {
+        let label = UILabel()
+        label.textAlignment = NSTextAlignment.left
+        label.font = UIFont.systemFont(ofSize: size, weight: weight)
+        label.textColor = color
+        label.numberOfLines = 0
+        return label
+    }
+
+
+    // MARK: - Attributed
+
     public func setAttributedText(fullText: String, highlightText: String, highlightColor: UIColor? = nil, highlightFontWeight: UIFont.Weight? = nil) {
         let range = (fullText as NSString).range(of: highlightText)
         let attributedString = NSMutableAttributedString(string:fullText)

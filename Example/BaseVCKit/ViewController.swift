@@ -80,7 +80,10 @@ class ViewController: BaseViewController {
     }
 
     @objc private func push(sender:UIButton!) {
-        push(ModalViewController())
+//        push(ModalViewController())
+        let vc = EditorVC()
+        vc.hidesBottomBarWhenPushed = true
+        push(vc)
     }
 }
 

@@ -66,7 +66,7 @@ class ModalViewController: BaseViewController {
         doneBtn.snp.makeConstraints { (make) in
             make.left.equalTo(marginH)
             make.right.equalTo(-marginH)
-            make.bottom.equalToSuperview().offset(-keyboardFollowOffset)
+            make.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
         }
     }
 
@@ -80,27 +80,22 @@ class ModalViewController: BaseViewController {
     @objc private func modal(sender:UIButton!) {
         modal(ModalViewController())
     }
-}
 
-// KeyboardObserable
-extension ModalViewController: KeyboardSanpable {
 
-    public var keyboardFollowView: UIView? {
+    // KeyboardObserable
+
+    private let keyboardFollowOffsetB = CGFloat(16)
+
+    override var keyboardFollowView: UIView? {
         return doneBtn
     }
-    public var keyboardFollowOffset: CGFloat {
-        return 16
+
+    override var keyboardFollowOffsetForAppeared: CGFloat {
+        return keyboardFollowOffsetB
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        startKeyboardAnimationObserveWithViewWillAppear()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        stopKeyboardAnimationObserveWithViewWillDisAppear()
+    override var keyboardFollowOffsetForDisappeared: CGFloat {
+        return keyboardFollowOffsetB
     }
 }
+

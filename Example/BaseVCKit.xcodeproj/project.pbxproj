@@ -20,6 +20,8 @@
 		01A34AE71EAE359500FBE0BD /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A34AD81EADD9B200FBE0BD /* ViewController2.swift */; };
 		01B047251ED03C8A003D6D09 /* ImageAssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B047241ED03C8A003D6D09 /* ImageAssetHelper.swift */; };
 		01B047261ED03D82003D6D09 /* ImageAssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B047241ED03C8A003D6D09 /* ImageAssetHelper.swift */; };
+		01B44D502085A18E00087DA5 /* EditorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B44D4F2085A18E00087DA5 /* EditorVC.swift */; };
+		01B44D512085A1E600087DA5 /* EditorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B44D4F2085A18E00087DA5 /* EditorVC.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -47,11 +49,12 @@
 		01A34ADE1EADE79E00FBE0BD /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		01A34AE01EAE1D0E00FBE0BD /* NavButtonConfigurableTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavButtonConfigurableTest.swift; sourceTree = "<group>"; };
 		01B047241ED03C8A003D6D09 /* ImageAssetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAssetHelper.swift; sourceTree = "<group>"; };
+		01B44D4F2085A18E00087DA5 /* EditorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorVC.swift; sourceTree = "<group>"; };
 		1E7C5264C0A6D03D006A43B0 /* Pods_BaseVCKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaseVCKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2072817C83AE55D904DEA988 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		25F5A6B4CBD624A7B95D38E6 /* Pods-BaseVCKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaseVCKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaseVCKit_Tests/Pods-BaseVCKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		2DC3B65CA612D4FC40B0A148 /* Pods-BaseVCKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaseVCKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaseVCKit_Tests/Pods-BaseVCKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		32D0C9EED64EBB2E29B4BECE /* BaseVCKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BaseVCKit.podspec; path = ../BaseVCKit.podspec; sourceTree = "<group>"; };
+		32D0C9EED64EBB2E29B4BECE /* BaseVCKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BaseVCKit.podspec; path = ../BaseVCKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4D2929A4DD8B7B2A26F47C8D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* BaseVCKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseVCKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 				01A34ADA1EADE5E700FBE0BD /* DetailViewController.swift */,
 				01A34ADC1EADE63200FBE0BD /* ModalViewController.swift */,
 				01A34ADE1EADE79E00FBE0BD /* BaseViewController.swift */,
+				01B44D4F2085A18E00087DA5 /* EditorVC.swift */,
 			);
 			name = "Example for BaseVCKit";
 			path = BaseVCKit;
@@ -411,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				01B44D502085A18E00087DA5 /* EditorVC.swift in Sources */,
 				01B047251ED03C8A003D6D09 /* ImageAssetHelper.swift in Sources */,
 				01A34ADD1EADE63200FBE0BD /* ModalViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -433,6 +438,7 @@
 				01A34AE21EAE352700FBE0BD /* ViewController.swift in Sources */,
 				01A34AE41EAE355200FBE0BD /* ModalViewController.swift in Sources */,
 				01A34AE51EAE356400FBE0BD /* DetailViewController.swift in Sources */,
+				01B44D512085A1E600087DA5 /* EditorVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

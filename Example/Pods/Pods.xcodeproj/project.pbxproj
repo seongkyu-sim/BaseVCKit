@@ -104,7 +104,6 @@
 		CB6C335501154FF250BA4FEA30C22786 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9585665371E567FFDAA6FD4B0E314A74 /* ConstraintLayoutSupportDSL.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CDE81B2E3EC6EF78B64C6D3A8D6D333C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0299DB7C02210E1A8B9D5AC528328BB /* Foundation.framework */; };
 		CED5350BFB4D413BB05F9814C54508B6 /* Pods-BaseVCKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86E90EE5FCD4E6E8BBB615FBB6A59D0D /* Pods-BaseVCKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0272467E5311FA20771B743F9B5D4C2 /* UILableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100F3871AAA03B925008CEA0636A951D /* UILableExtensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D097F3914F8E2EA14FB7C88FA3099F26 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E461AA26D1E52444DFAF5A581C65 /* FBSnapshotTestCase.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D1D641F78AF63E67AF8847E0E6EC0088 /* CacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D4422D1AD803127EB50F67747034 /* CacheSerializer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D412DF44D4EF374507E747F3A2D4BA15 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D383082C44F464294CEE90C61C57D /* UILabelExtensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -210,7 +209,6 @@
 		0E4F7EFF086FA82CD78424406F23A8FA /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		0E7A5B2A32E6F3BB27C5DC2A8FA7E97D /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
 		0FD6EF8D96901BF99D628B3DDC415939 /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
-		100F3871AAA03B925008CEA0636A951D /* UILableExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UILableExtensions.swift; sourceTree = "<group>"; };
 		117DF209332F6734FC3B5B4B67F1727A /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		11F2AE4FDCDFC9B3F9A69887E5A257CB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		120501A18436541C229BBC82E0B1B278 /* BaseVCKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BaseVCKit-dummy.m"; sourceTree = "<group>"; };
@@ -478,7 +476,6 @@
 				DDA7F231BD6855E80074E041C53BA965 /* UIControlExtensions.swift */,
 				5BEE0651FB098C3D850BD206AAF27A97 /* UIImageExtensions.swift */,
 				7D3D383082C44F464294CEE90C61C57D /* UILabelExtensions.swift */,
-				100F3871AAA03B925008CEA0636A951D /* UILableExtensions.swift */,
 				81F794FEA26A8D32367DFDABAA780E4A /* UIScrollViewExtensions.swift */,
 				DEABD7B95511EE2E67A588F3F6AE17C9 /* UITabbarExtensions.swift */,
 				BA55913274E582D572D51D191686F3AE /* UITableViewExtensions.swift */,
@@ -1110,7 +1107,6 @@
 				9DC2CC98D80C649D477F2BF3D7D3768A /* UIControlExtensions.swift in Sources */,
 				D47C9996CDCFAE03CB695D9E72BF7CE9 /* UIImageExtensions.swift in Sources */,
 				D412DF44D4EF374507E747F3A2D4BA15 /* UILabelExtensions.swift in Sources */,
-				D0272467E5311FA20771B743F9B5D4C2 /* UILableExtensions.swift in Sources */,
 				FAB67642A9144869E89847170750DF03 /* UIScrollViewExtensions.swift in Sources */,
 				4943D1C5376145CBC55AB8E9044B7427 /* UITabbarExtensions.swift in Sources */,
 				A6222E7310A10143B0228006084A5CF0 /* UITableViewExtensions.swift in Sources */,

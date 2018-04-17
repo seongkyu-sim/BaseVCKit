@@ -9,7 +9,7 @@
 import UIKit
 import BaseVCKit
 
-class BaseViewController: UIViewController, EasyNavigatable {
+class BaseViewController: UIViewController, EasyNavigatable, KeyboardSanpable {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,14 @@ class BaseViewController: UIViewController, EasyNavigatable {
     }
 
     public var didInitSubViews:Bool = false
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if didInitSubViews {
+            startKeyboardAnimationObserve()
+        }
+    }
 
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -38,6 +46,12 @@ class BaseViewController: UIViewController, EasyNavigatable {
         }
     }
 
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        stopKeyboardAnimationObserve()
+    }
+
 
     // MARK: - Init Subviews with viewDidLayoutSubviews
 
@@ -45,7 +59,48 @@ class BaseViewController: UIViewController, EasyNavigatable {
         view.backgroundColor = .white
     }
     func initSubViewConstraints() {}
-    func didInitSubViewsConstraints() {}
+    func didInitSubViewsConstraints() {
+        startKeyboardAnimationObserve()
+    }
+
+
+    // MARK: - KeyboardObserable: Why not implement in extions? --> needs override on subClass
+
+    public var keyboardFollowView: UIView? {
+        return nil
+    }
+
+    public var keyboardFollowOffsetForAppeared: CGFloat {
+        return 0
+    }
+
+    public var keyboardFollowOffsetForDisappeared: CGFloat {
+        return 0
+    }
+
+
+    var shouldStartKeyboardAnimationObserve: Bool {
+        return false
+    }
+
+    fileprivate func startKeyboardAnimationObserve() {
+        if keyboardFollowView != nil || shouldStartKeyboardAnimationObserve {
+            startKeyboardAnimationObserveWithViewWillAppear()
+        }
+        /*
+        guard let _ = keyboardFollowView else { return }
+
+        startKeyboardAnimationObserveWithViewWillAppear()
+        */
+    }
+
+    fileprivate func stopKeyboardAnimationObserve() {
+        stopKeyboardAnimationObserveWithViewWillDisAppear()
+    }
+
+    public func willChangeKeyboard(height: CGFloat) {
+        print("height: \(height)")
+    }
 }
 
 
