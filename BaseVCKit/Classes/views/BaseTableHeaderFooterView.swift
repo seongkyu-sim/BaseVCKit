@@ -49,9 +49,6 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
 
-        setNeedsLayout()
-        layoutIfNeeded()
-
         if let superview = superview { removeObserversFromView(view: superview) }
         if let newSuperview = newSuperview { addScrollViewObservers(view: newSuperview) }
     }
@@ -80,14 +77,6 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
         contentView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
         }
-
-        /**
-         * fix: [Layout Constraints] Unable to simultaneously satisfy constraints.
-         * - if not set width, needs set width for labels in subviews
-         */
-        self.snp.makeConstraints { (make) in
-            make.width.equalTo(UIScreen.main.bounds.width)
-        }
     }
 
 
@@ -111,10 +100,10 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
         }else {
             tableView.tableFooterView = self
         }
-        self.snp.makeConstraints { (make) in
-            make.width.equalTo(tableView)
-            make.height.equalTo(self.size.height)
-        }
+
+        let selfSize = self.size
+        self.frame = CGRect(origin: CGPoint.zero, size: selfSize)
+
         if isHeader {
             tableView.tableHeaderView = self
         }else {
