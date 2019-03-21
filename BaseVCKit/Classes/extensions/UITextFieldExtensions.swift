@@ -27,7 +27,7 @@ public extension UITextField {
 
     public func setUnderlineOnly(color: UIColor, width: CGFloat = 1) {
         if underLine == nil {
-            self.borderStyle = UITextBorderStyle.none
+            self.borderStyle = UITextField.BorderStyle.none
             self.backgroundColor = UIColor.clear
             underLine = UIView()
             self.addSubview(underLine!)

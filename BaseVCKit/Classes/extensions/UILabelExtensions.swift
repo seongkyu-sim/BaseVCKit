@@ -27,7 +27,7 @@ public extension UILabel {
         let attributedString = NSMutableAttributedString(string:fullText)
 
         if let highlightColor = highlightColor { // height color
-            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: highlightColor , range: range)
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: highlightColor , range: range)
         }
 
         // set bold
@@ -39,7 +39,7 @@ public extension UILabel {
         if let highlightFontWeight = highlightFontWeight {
             font = UIFont.systemFont(ofSize: originFontSize, weight: highlightFontWeight)
         }
-        attributedString.addAttribute(NSAttributedStringKey.font, value: font , range: range)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: font , range: range)
 
         self.attributedText = attributedString
     }
@@ -50,8 +50,8 @@ public extension UILabel {
     public func renderStrikethrough(text:String?, color:UIColor = UIColor.black) {
         guard let text = text else { return }
 
-        let attributedText = NSMutableAttributedString(string: text , attributes: [NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue, NSAttributedStringKey.strikethroughColor: color])
-        attributedText.addAttribute(NSAttributedStringKey.baselineOffset, value: 0, range: NSMakeRange(0, attributedText.length))
+        let attributedText = NSMutableAttributedString(string: text , attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: color])
+        attributedText.addAttribute(NSAttributedString.Key.baselineOffset, value: 0, range: NSMakeRange(0, attributedText.length))
         self.attributedText = attributedText
     }
 

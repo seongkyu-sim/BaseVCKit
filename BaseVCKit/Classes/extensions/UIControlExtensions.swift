@@ -13,7 +13,7 @@ public class TargetActionProxy: UIView {
     // a block that will be called
     public var _action: (AnyObject) -> ()
 
-    public init(controlEvents: UIControlEvents, action: @escaping (AnyObject) -> ()) {
+    public init(controlEvents: UIControl.Event, action: @escaping (AnyObject) -> ()) {
         _action = action
         super.init(frame: CGRect.zero)
         self.tag = Int(controlEvents.rawValue)
@@ -37,7 +37,7 @@ public extension UIControl {
      - parameter action: a closure that will be executed when it recieves the given control events.
      */
     @objc
-    public func addHandler(events: UIControlEvents, action: @escaping (AnyObject) -> ())
+    public func addHandler(events: UIControl.Event, action: @escaping (AnyObject) -> ())
     {
         callback(when: events, with: action)
     }
@@ -55,11 +55,11 @@ extension CallBackTargetAction where Self: UIControl {
      - parameter controlEvents: The control events that you want to trigger the closure
      - parameter action: a closure that will be executed when it recieves the given control events.
      */
-    public func callback(when controlEvents: UIControlEvents = [UIControlEvents.touchUpInside],
+    public func callback(when controlEvents: UIControl.Event = [UIControl.Event.touchUpInside],
                          with action: @escaping (Self) -> ())
     {
         // An array of supported touch events
-        let ctrlEvts: [UIControlEvents] =
+        let ctrlEvts: [UIControl.Event] =
             [
                 .touchDown,
                 .touchDownRepeat,
@@ -88,7 +88,7 @@ extension CallBackTargetAction where Self: UIControl {
     }
 
     private func _addActionToView(tag: UInt, action: @escaping (AnyObject) -> ()) {
-        let foo = TargetActionProxy(controlEvents: UIControlEvents(rawValue: tag), action: action)
+        let foo = TargetActionProxy(controlEvents: UIControl.Event(rawValue: tag), action: action)
 
         // remove previous if it exists
         viewWithTag(Int(tag))?.removeFromSuperview()
@@ -97,6 +97,6 @@ extension CallBackTargetAction where Self: UIControl {
         self.addSubview(foo)
         
         // add target to button.  Target instance is a proxy object and it calls a selector beloing to that proxy object.
-        addTarget(foo, action: #selector(TargetActionProxy.action(_:)), for: UIControlEvents(rawValue: tag))
+        addTarget(foo, action: #selector(TargetActionProxy.action(_:)), for: UIControl.Event(rawValue: tag))
     }
 }

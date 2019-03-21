@@ -64,7 +64,7 @@ public class ProfileImageView: UIView {
 
     private lazy var imgView: UIImageView = { [unowned self] in
         let v = UIImageView.init()
-        v.contentMode = UIViewContentMode.scaleAspectFill
+        v.contentMode = UIView.ContentMode.scaleAspectFill
         self.addSubview(v)
         return v
     }()

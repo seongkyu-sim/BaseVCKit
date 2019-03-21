@@ -24,7 +24,7 @@ public extension UIButton {
 
         let btn = UIButton(type: .custom)
         btn.setImage(image, for: .normal)
-        btn.setTitle(title, for: UIControlState.normal)
+        btn.setTitle(title, for: UIControl.State.normal)
         btn.titleLabel!.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
         btn.setRoundCorner(radius: cornerRadius)
         btn.setStatesTitleColor(withNormalColor: titleColor)
@@ -46,7 +46,7 @@ public extension UIButton {
         self.setBackground(color: color, state: .disabled)
     }
 
-    public func setBackground(color: UIColor, state: UIControlState) {
+    public func setBackground(color: UIColor, state: UIControl.State) {
         self.setBackgroundImage(image(withColor: color), for: state)
     }
 

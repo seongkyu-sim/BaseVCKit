@@ -32,13 +32,13 @@ extension UIBarButtonItem {
      :param: handler The closure which handles button touches.
      :returns: an initialized instance of UIBarButtonItem.
      */
-    public convenience init(image: UIImage?, style: UIBarButtonItemStyle, handler: @escaping CKBarButtonHandler) {
+    public convenience init(image: UIImage?, style: UIBarButtonItem.Style, handler: @escaping CKBarButtonHandler) {
         self.init(image: image, style: style, target: nil, action: #selector(UIBarButtonItem.handleAction))
         self.closuresWrapper = ClosureWrapper(handler: handler)
         self.target = self
     }
 
-    public convenience init(systemItem: UIBarButtonSystemItem, handler: @escaping CKBarButtonHandler) {
+    public convenience init(systemItem: UIBarButtonItem.SystemItem, handler: @escaping CKBarButtonHandler) {
         self.init(barButtonSystemItem: systemItem, target: nil, action: #selector(UIBarButtonItem.handleAction))
         self.closuresWrapper = ClosureWrapper(handler: handler)
         self.target = self

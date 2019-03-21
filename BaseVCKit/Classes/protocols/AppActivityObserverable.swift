@@ -38,11 +38,11 @@ public extension AppActivityObserverable {
         let notiName: NSNotification.Name!
         switch appActivityType {
         case .didBecomeActive:
-            notiName = NSNotification.Name.UIApplicationDidBecomeActive
+            notiName = UIApplication.didBecomeActiveNotification
         case .willEnterForeground:
-            notiName = NSNotification.Name.UIApplicationWillEnterForeground
+            notiName = UIApplication.willEnterForegroundNotification
         case .didEnterBackground:
-            notiName = NSNotification.Name.UIApplicationDidEnterBackground
+            notiName = UIApplication.didEnterBackgroundNotification
         }
 
         let using: ((Notification) -> ()) = { [weak self] (notification) in

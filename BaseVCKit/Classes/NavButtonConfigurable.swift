@@ -150,7 +150,7 @@ extension UIViewController {
         if let title = title {
             if let nav = self.navigationController,
                 let item = nav.navigationBar.topItem {
-                item.backBarButtonItem  = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.dismissAction))
+                item.backBarButtonItem  = UIBarButtonItem(title: title, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.dismissAction))
             } else {
                 if let nav = self.navigationController,
                     let _ = nav.navigationBar.backItem {
@@ -169,7 +169,7 @@ extension UIViewController {
             btn.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
             barButton = UIBarButtonItem(customView: btn)
         }else {
-            barButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(self.dismissAction))
+            barButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(self.dismissAction))
         }
         navigationItem.leftBarButtonItem = barButton
     }

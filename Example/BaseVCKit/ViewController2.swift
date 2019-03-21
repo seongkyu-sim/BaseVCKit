@@ -19,7 +19,7 @@ class ViewController2: BaseViewController {
     private lazy var tableView: UITableView = { [unowned self] in
         let v = UITableView()
         v.backgroundColor = UIColor.clear
-        v.rowHeight = UITableViewAutomaticDimension
+        v.rowHeight = UITableView.automaticDimension
         v.estimatedRowHeight = 100
 //        v.separatorStyle = .none
         v.dataSource = self

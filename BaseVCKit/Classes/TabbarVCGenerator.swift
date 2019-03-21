@@ -19,9 +19,9 @@ public enum TabbarVCGenerator {
         public var normalIcon: UIImage?
         public var selectedIcon: UIImage?
         // system default item
-        public var systemItem: UITabBarSystemItem?
+        public var systemItem: UITabBarItem.SystemItem?
 
-        public init(viewController: UIViewController, systemItem: UITabBarSystemItem, imbeddedInNavigationController: Bool = true) {
+        public init(viewController: UIViewController, systemItem: UITabBarItem.SystemItem, imbeddedInNavigationController: Bool = true) {
             self.viewController = viewController
             self.systemItem = systemItem
             self.imbeddedInNavigationController = imbeddedInNavigationController

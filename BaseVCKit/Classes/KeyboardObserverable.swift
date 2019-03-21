@@ -14,7 +14,7 @@ import SnapKit
  */
 
 public protocol KeyboardObserverable: class {
-    func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions)
+    func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIView.AnimationOptions)
     func willChangeKeyboard(height: CGFloat)
 }
 
@@ -41,21 +41,21 @@ extension KeyboardObserverable where Self: UIViewController {
     public func startKeyboardAnimationObserveWithViewWillAppear() {
 
         keyboardOb = NotificationCenter.default.addObserver(
-            forName: NSNotification.Name.UIKeyboardWillChangeFrame,
+            forName: UIResponder.keyboardWillChangeFrameNotification,
             object: nil,
             queue: OperationQueue.main,
             using: { [weak self] (notification) in
                 guard let userInfo = notification.userInfo,
-                    let frame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-                    let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-                    let c = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt,
+                    let frame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+                    let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+                    let c = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
                     let keyboardFrame = self?.view.convert(frame, from: nil),
                     let viewBounds = self?.view.bounds else {
                         return
                 }
 
                 let newBottomOffset = viewBounds.maxY - keyboardFrame.minY
-                let animationType: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: c)
+                let animationType: UIView.AnimationOptions = UIView.AnimationOptions(rawValue: c)
                 self?.willAnimateKeyboard(keyboardTargetHeight: newBottomOffset, duration: duration, animationType: animationType)
                 self?.willChangeKeyboard(height: newBottomOffset)
         })
@@ -70,7 +70,7 @@ extension KeyboardObserverable where Self: UIViewController {
         }
     }
 
-    public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions) {}
+    public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIView.AnimationOptions) {}
     public func willChangeKeyboard(height: CGFloat) {}
 }
 
@@ -94,7 +94,7 @@ extension KeyboardSanpable where Self: UIViewController {
     public var keyboardFollowOffsetForAppeared: CGFloat { return 0 }
     public var keyboardFollowOffsetForDisappeared: CGFloat { return 0 }
 
-    public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIViewAnimationOptions) {
+    public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIView.AnimationOptions) {
         guard let animations = self.keyboardFollowViewUpdateContraintsAnimations(keyboardTargetHeight: keyboardTargetHeight) else { return }
 
         UIView.animate(withDuration: duration, delay: 0.0, options: animationType, animations: animations) { [unowned self] (finished) in

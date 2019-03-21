@@ -174,7 +174,7 @@ public extension UIView {
         self.addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: numberOfTouches, forSwipeDirection: .down, withResponder: responder)
     }
 
-    public func addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, forSwipeDirection swipeDirection: UISwipeGestureRecognizerDirection, withResponder responder: @escaping SwipeResponseClosure) {
+    public func addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, forSwipeDirection swipeDirection: UISwipeGestureRecognizer.Direction, withResponder responder: @escaping SwipeResponseClosure) {
         let swipe = UISwipeGestureRecognizer()
         swipe.direction = swipeDirection
         swipe.numberOfTouchesRequired = numberOfTouches

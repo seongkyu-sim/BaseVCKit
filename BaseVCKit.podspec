@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BaseVCKit'
-  s.version          = '4.1.1'
+  s.version          = '4.2.0'
   s.summary          = 'Useful utils for UIViewController'
 
 # This description is used to generate tags and improve search results.
@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
   s.description      = 'BaseVCKit has potocols & extensions'
 
   s.homepage         = 'https://github.com/seongkyu-sim/BaseVCKit'
+
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'seongkyu-sim' => 'seongkyu.sim@gmail.com' }
@@ -27,7 +28,6 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
-
   s.source_files = 'BaseVCKit/Classes/**/*'
 
   # s.resource_bundles = {
@@ -36,6 +36,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  s.dependency 'SnapKit', '~> 4.0.0'
-  s.dependency 'Kingfisher', '~> 4.0.0'
+  s.dependency 'SnapKit', '~> 4.2.0'
+  s.dependency 'Kingfisher', '~> 5.2.0'
 end
