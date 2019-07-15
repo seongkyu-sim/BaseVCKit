@@ -18,17 +18,23 @@ class EditorVC: BaseViewController {
         self.view.addSubview(v)
         return v
     }()
+    private lazy var txtField: UITextField = { [unowned self] in
+        let v = UITextField()
+        v.backgroundColor = UIColor.lightGray
+        self.view.addSubview(v)
+        return v
+        }()
     private lazy var keyboardBar: UIView = {
         let v = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
-//        let v = UIView()
         v.backgroundColor = UIColor.yellow
-//        self.view.insertSubview(v, aboveSubview: txtView)
+        self.view.addSubview(v)
         return v
     }()
-
+    /*
     override var inputAccessoryView: UIView? {
         return keyboardBar
     }
+    */
 
     // MARK: - Init SubViews
 
@@ -39,23 +45,32 @@ class EditorVC: BaseViewController {
     override func initSubViewConstraints() {
         super.initSubViewConstraints()
 
-        txtView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
+        let padding = UIEdgeInsets(top: 20, left: 16, bottom: keyboardFollowOffsetB, right: 16)
+
         /*
-        keyboardBar.snp.makeConstraints { (make) in
-//            make.left.right.equalToSuperview()
-//            make.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
-            make.height.equalTo(44)
-            make.width.equalTo(UIScreen.main.bounds.width)
+        txtView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         */
+
+        txtField.snp.makeConstraints {
+            $0.top.equalTo(topLayoutGuide.snp.bottom).offset(padding.top)
+            $0.left.right.equalToSuperview().inset(padding)
+            $0.height.equalTo(50)
+        }
+        keyboardBar.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
+            $0.height.equalTo(44)
+        }
     }
 
 
     // KeyboardObserable
-    /*
-    private let keyboardFollowOffsetB = CGFloat(0)
+
+    private var keyboardFollowOffsetB: CGFloat {
+        return bottomLayoutGuide.length
+    }
 
     override var keyboardFollowView: UIView? {
         return keyboardBar
@@ -68,17 +83,10 @@ class EditorVC: BaseViewController {
     override var keyboardFollowOffsetForDisappeared: CGFloat {
         return keyboardFollowOffsetB
     }
-    */
 
     override var shouldStartKeyboardAnimationObserve: Bool {
         return true
     }
-
-
-
-    
-
-
 }
 
 

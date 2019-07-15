@@ -97,8 +97,8 @@ extension KeyboardSanpable where Self: UIViewController {
     public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIView.AnimationOptions) {
         guard let animations = self.keyboardFollowViewUpdateContraintsAnimations(keyboardTargetHeight: keyboardTargetHeight) else { return }
 
-        UIView.animate(withDuration: duration, delay: 0.0, options: animationType, animations: animations) { [unowned self] (finished) in
-            self.keyboardFollowViewUpdateContraintsAnimationCompleted(finished: finished)
+        UIView.animate(withDuration: duration, delay: 0.0, options: animationType, animations: animations) { [weak self] finished in
+            self?.keyboardFollowViewUpdateContraintsAnimationCompleted(finished: finished)
         }
     }
 
