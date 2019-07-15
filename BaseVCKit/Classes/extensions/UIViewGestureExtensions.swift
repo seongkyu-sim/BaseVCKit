@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public extension UIView {
 
     typealias TapResponseClosure = (_ tap: UITapGestureRecognizer) -> Void
@@ -51,7 +50,7 @@ public extension UIView {
             }()
     }
 
-    @objc public func swizzled_removeFromSuperview() {
+    @objc func swizzled_removeFromSuperview() {
         self.removeGestureRecognizersFromStorage()
         /*
         Will call the original representation of removeFromSuperview, not endless cycle:
@@ -60,7 +59,7 @@ public extension UIView {
         self.swizzled_removeFromSuperview()
     }
 
-    public func removeGestureRecognizersFromStorage() {
+    func removeGestureRecognizersFromStorage() {
         if let gestureRecognizers = self.gestureRecognizers {
             for recognizer: UIGestureRecognizer in gestureRecognizers as [UIGestureRecognizer] {
                 if let tap = recognizer as? UITapGestureRecognizer {
@@ -87,15 +86,15 @@ public extension UIView {
 
     // MARK: Taps
 
-    public func addSingleTapGestureRecognizerWithResponder(responder: @escaping TapResponseClosure) {
+    func addSingleTapGestureRecognizerWithResponder(responder: @escaping TapResponseClosure) {
         self.addTapGestureRecognizerForNumberOfTaps(withResponder: responder)
     }
 
-    public func addDoubleTapGestureRecognizerWithResponder(responder: @escaping TapResponseClosure) {
+    func addDoubleTapGestureRecognizerWithResponder(responder: @escaping TapResponseClosure) {
         self.addTapGestureRecognizerForNumberOfTaps(numberOfTaps: 2, withResponder: responder)
     }
 
-    public func addTapGestureRecognizerForNumberOfTaps(
+    func addTapGestureRecognizerForNumberOfTaps(
         numberOfTaps: Int = 1,
         numberOfTouches: Int = 1,
         withResponder responder: @escaping TapResponseClosure
@@ -112,22 +111,22 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    @objc public func handleTap(sender: UITapGestureRecognizer) {
+    @objc func handleTap(sender: UITapGestureRecognizer) {
         if let closureForTap = ClosureStorage.TapClosureStorage[sender] {
             closureForTap(sender)
         }
     }
 
     // MARK: Pans
-    public func addSingleTouchPanGestureRecognizerWithResponder(responder: @escaping PanResponseClosure) {
+    func addSingleTouchPanGestureRecognizerWithResponder(responder: @escaping PanResponseClosure) {
         self.addPanGestureRecognizerForNumberOfTouches(numberOfTouches: 1, withResponder: responder)
     }
 
-    public func addDoubleTouchPanGestureRecognizerWithResponder(responder: @escaping PanResponseClosure) {
+    func addDoubleTouchPanGestureRecognizerWithResponder(responder: @escaping PanResponseClosure) {
         self.addPanGestureRecognizerForNumberOfTouches(numberOfTouches: 2, withResponder: responder)
     }
 
-    public func addPanGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping PanResponseClosure) {
+    func addPanGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping PanResponseClosure) {
         let pan = UIPanGestureRecognizer()
         pan.minimumNumberOfTouches = numberOfTouches
         pan.addTarget(self, action: #selector(UIView.handlePan(sender:)))
@@ -137,7 +136,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    @objc public func handlePan(sender: UIPanGestureRecognizer) {
+    @objc func handlePan(sender: UIPanGestureRecognizer) {
         if let closureForPan = ClosureStorage.PanClosureStorage[sender] {
             closureForPan(sender)
         }
@@ -146,39 +145,39 @@ public extension UIView {
 
     // MARK: Swipes
 
-    public func addLeftSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
+    func addLeftSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
         self.addLeftSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: 1, withResponder: responder)
     }
 
-    public func addLeftSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
+    func addLeftSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
         self.addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: numberOfTouches, forSwipeDirection: .left, withResponder: responder)
     }
 
-    public func addRightSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
+    func addRightSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
         self.addRightSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: 1, withResponder: responder)
     }
 
-    public func addRightSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
+    func addRightSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
         self.addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: numberOfTouches, forSwipeDirection: .right, withResponder: responder)
     }
 
-    public func addUpSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
+    func addUpSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
         self.addUpSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: 1, withResponder: responder)
     }
 
-    public func addUpSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
+    func addUpSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
         self.addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: numberOfTouches, forSwipeDirection: .up, withResponder: responder)
     }
 
-    public func addDownSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
+    func addDownSwipeGestureRecognizerWithResponder(responder: @escaping SwipeResponseClosure) {
         self.addDownSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: 1, withResponder: responder)
     }
 
-    public func addDownSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
+    func addDownSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping SwipeResponseClosure) {
         self.addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: numberOfTouches, forSwipeDirection: .down, withResponder: responder)
     }
 
-    public func addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, forSwipeDirection swipeDirection: UISwipeGestureRecognizer.Direction, withResponder responder: @escaping SwipeResponseClosure) {
+    func addSwipeGestureRecognizerForNumberOfTouches(numberOfTouches: Int, forSwipeDirection swipeDirection: UISwipeGestureRecognizer.Direction, withResponder responder: @escaping SwipeResponseClosure) {
         let swipe = UISwipeGestureRecognizer()
         swipe.direction = swipeDirection
         swipe.numberOfTouchesRequired = numberOfTouches
@@ -189,7 +188,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    @objc public func handleSwipe(sender: UISwipeGestureRecognizer) {
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         if let closureForSwipe = ClosureStorage.SwipeClosureStorage[sender] {
             closureForSwipe(sender)
         }
@@ -198,7 +197,7 @@ public extension UIView {
 
     // MARK: Pinches
 
-    public func addPinchGestureRecognizerWithResponder(responder: @escaping PinchResponseClosure) {
+    func addPinchGestureRecognizerWithResponder(responder: @escaping PinchResponseClosure) {
         let pinch = UIPinchGestureRecognizer()
         pinch.addTarget(self, action: #selector(UIView.handlePinch(sender:)))
         self.addGestureRecognizer(pinch)
@@ -207,7 +206,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    @objc public func handlePinch(sender: UIPinchGestureRecognizer) {
+    @objc func handlePinch(sender: UIPinchGestureRecognizer) {
         if let closureForPinch = ClosureStorage.PinchClosureStorage[sender] {
             closureForPinch(sender)
         }
@@ -216,11 +215,11 @@ public extension UIView {
 
     // MARK: LongPress
 
-    public func addLongPressGestureRecognizerWithResponder(responder: @escaping LongPressResponseClosure) {
+    func addLongPressGestureRecognizerWithResponder(responder: @escaping LongPressResponseClosure) {
         self.addLongPressGestureRecognizerForNumberOfTouches(numberOfTouches: 1, withResponder: responder)
     }
 
-    public func addLongPressGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping LongPressResponseClosure) {
+    func addLongPressGestureRecognizerForNumberOfTouches(numberOfTouches: Int, withResponder responder: @escaping LongPressResponseClosure) {
         let longPress = UILongPressGestureRecognizer()
         longPress.numberOfTouchesRequired = numberOfTouches
         longPress.addTarget(self, action: #selector(UIView.handleLongPress(sender:)))
@@ -230,7 +229,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    @objc public func handleLongPress(sender: UILongPressGestureRecognizer) {
+    @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
         if let closureForLongPinch = ClosureStorage.LongPressClosureStorage[sender] {
             closureForLongPinch(sender)
         }
@@ -239,7 +238,7 @@ public extension UIView {
 
     // MARK: Rotation
 
-    public func addRotationGestureRecognizerWithResponder(responder: @escaping RotationResponseClosure) {
+    func addRotationGestureRecognizerWithResponder(responder: @escaping RotationResponseClosure) {
         let rotation = UIRotationGestureRecognizer()
         rotation.addTarget(self, action: #selector(UIView.handleRotation(sender:)))
         self.addGestureRecognizer(rotation)
@@ -248,7 +247,7 @@ public extension UIView {
         Swizzler.Swizzle()
     }
 
-    @objc public func handleRotation(sender: UIRotationGestureRecognizer) {
+    @objc func handleRotation(sender: UIRotationGestureRecognizer) {
         if let closureForRotation = ClosureStorage.RotationClosureStorage[sender] {
             closureForRotation(sender)
         }
@@ -257,7 +256,7 @@ public extension UIView {
 
     // MARK: -
 
-    public var hasTabRecognizer: Bool {
+    var hasTabRecognizer: Bool {
         get {
             if let gestureRecognizers = self.gestureRecognizers {
                 for recognizer: UIGestureRecognizer in gestureRecognizers as [UIGestureRecognizer] {

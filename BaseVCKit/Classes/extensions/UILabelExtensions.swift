@@ -10,7 +10,7 @@ import UIKit
 
 public extension UILabel {
 
-    public static func configureLabel(color:UIColor, size:CGFloat, weight: UIFont.Weight = UIFont.Weight.regular) -> UILabel {
+    static func configureLabel(color:UIColor, size:CGFloat, weight: UIFont.Weight = UIFont.Weight.regular) -> UILabel {
         let label = UILabel()
         label.textAlignment = NSTextAlignment.left
         label.font = UIFont.systemFont(ofSize: size, weight: weight)
@@ -22,7 +22,7 @@ public extension UILabel {
 
     // MARK: - Attributed
 
-    public func setAttributedText(fullText: String, highlightText: String, highlightColor: UIColor? = nil, highlightFontWeight: UIFont.Weight? = nil) {
+    func setAttributedText(fullText: String, highlightText: String, highlightColor: UIColor? = nil, highlightFontWeight: UIFont.Weight? = nil) {
         let range = (fullText as NSString).range(of: highlightText)
         let attributedString = NSMutableAttributedString(string:fullText)
 
@@ -47,7 +47,7 @@ public extension UILabel {
 
     // MARK: - Strikethrough line
 
-    public func renderStrikethrough(text:String?, color:UIColor = UIColor.black) {
+    func renderStrikethrough(text:String?, color:UIColor = UIColor.black) {
         guard let text = text else {
             return
         }
@@ -60,7 +60,7 @@ public extension UILabel {
 
     // MARK: - Ellipse Indecator
 
-    public func startEllipseAnimate(withText txt: String = "") {
+    func startEllipseAnimate(withText txt: String = "") {
         defaultTxt = txt
         stopEllipseAnimate()
         ellipseTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
@@ -68,7 +68,7 @@ public extension UILabel {
         }
     }
 
-    public func stopEllipseAnimate() {
+    func stopEllipseAnimate() {
         if let aTimer = ellipseTimer {
             aTimer.invalidate()
             ellipseTimer = nil

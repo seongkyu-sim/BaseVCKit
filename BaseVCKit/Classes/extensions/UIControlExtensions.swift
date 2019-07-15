@@ -37,7 +37,7 @@ public extension UIControl {
      - parameter action: a closure that will be executed when it recieves the given control events.
      */
     @objc
-    public func addHandler(events: UIControl.Event, action: @escaping (AnyObject) -> ())
+    func addHandler(events: UIControl.Event, action: @escaping (AnyObject) -> ())
     {
         callback(when: events, with: action)
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIAlertController {
-    public static func showAlert(message: String?, title: String = "title.Notice".localized) {
+    static func showAlert(message: String?, title: String = "title.Notice".localized) {
         guard let topVC = UIApplication.topVC() else {
             print("!!! there r no topVC")
             return

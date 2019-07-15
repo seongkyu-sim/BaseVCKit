@@ -12,7 +12,7 @@ public extension UIViewController {
 
     // MARK: - Dismiss keyboard with touch up background
 
-    public func dismissKeyboardWhenTappedAround() {
+    func dismissKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -24,7 +24,7 @@ public extension UIViewController {
 
     // MARK: -
 
-    public func isVisible() -> Bool {
+    func isVisible() -> Bool {
         return isViewLoaded && (view.window != nil)
     }
 }

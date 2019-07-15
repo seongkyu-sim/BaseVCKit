@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIView {
 
-    public var parentViewController: UIViewController? {
+    var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
             parentResponder = parentResponder!.next
@@ -21,12 +21,12 @@ public extension UIView {
         return nil
     }
 
-    public func setRoundCorner(radius: CGFloat) {
+    func setRoundCorner(radius: CGFloat) {
         self.layer.masksToBounds = true
         self.layer.cornerRadius = radius
     }
 
-    public func setBorder(color: UIColor, width: CGFloat = 0.5) {
+    func setBorder(color: UIColor, width: CGFloat = 0.5) {
         self.layer.borderWidth = width
         self.layer.borderColor = color.cgColor
     }

@@ -10,7 +10,7 @@ import UIKit
 
 public extension UITabBar {
 
-    public func showDot(itemIndex index: Int, color: UIColor? = UIColor.red) {
+    func showDot(itemIndex index: Int, color: UIColor? = UIColor.red) {
         let dotRadius = CGFloat(3)
         let tabItemW = self.items == nil ? self.frame.size.width : self.frame.size.width / CGFloat(self.items!.count)
         let centerX = tabItemW * CGFloat(index) + tabItemW/2
@@ -22,7 +22,7 @@ public extension UITabBar {
         self.addSubview(dot)
     }
 
-    public func hideDot(itemIndex index: Int) {
+    func hideDot(itemIndex index: Int) {
         if let foundView = self.viewWithTag(888) {
             foundView.removeFromSuperview()
         }

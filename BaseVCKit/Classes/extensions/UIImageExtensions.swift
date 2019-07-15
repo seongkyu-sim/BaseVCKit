@@ -10,26 +10,26 @@ import UIKit
 
 public extension UIImage {
 
-    public func image(withColor color: UIColor) -> UIImage {
+    func image(withColor color: UIColor) -> UIImage {
         let newImage = image(withColor: color, size: self.size)
         return newImage
     }
 
-    public func image(withColor color: UIColor, width: CGFloat) -> UIImage {
+    func image(withColor color: UIColor, width: CGFloat) -> UIImage {
         let originSize = self.size
         let height = originSize.height * width / originSize.width
         let newSize = CGSize(width: width, height: height)
         return self.image(withColor: color, size: newSize)
     }
 
-    public func image(withColor color: UIColor, height: CGFloat) -> UIImage {
+    func image(withColor color: UIColor, height: CGFloat) -> UIImage {
         let originSize = self.size
         let width = originSize.width * height / originSize.height
         let newSize = CGSize(width: width, height: height)
         return self.image(withColor: color, size: newSize)
     }
 
-    public func image(withColor color: UIColor, size: CGSize) -> UIImage {
+    func image(withColor color: UIColor, size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, self.scale)
         color.setFill()
 
@@ -51,7 +51,7 @@ public extension UIImage {
 
     // MARK: - Make space in imageView.rect's inside
 
-    public func image(withSpaceInsets insets: UIEdgeInsets) -> UIImage {
+    func image(withSpaceInsets insets: UIEdgeInsets) -> UIImage {
         let origImage = self
         let size = CGSize(width: origImage.size.width + insets.left + insets.right, height: origImage.size.height + insets.top + insets.bottom)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
@@ -65,7 +65,7 @@ public extension UIImage {
 
     // MARK: - Resizing: reduce file size
 
-    public func image(resizeRate rate: CGFloat) -> UIImage? {
+    func image(resizeRate rate: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: size.width * rate, height: size.height * rate)))
         imageView.contentMode = .scaleAspectFit
         imageView.image = self
@@ -77,7 +77,7 @@ public extension UIImage {
         return result
     }
 
-    public func image(resizeWidth width: CGFloat) -> UIImage? {
+    func image(resizeWidth width: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
         imageView.contentMode = .scaleAspectFit
         imageView.image = self

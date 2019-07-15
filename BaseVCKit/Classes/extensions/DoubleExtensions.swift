@@ -10,7 +10,7 @@ import Foundation
 
 public extension Double {
 
-    public func currency(withLocaleIdentifier localeIdentifier: String) -> String {
+    func currency(withLocaleIdentifier localeIdentifier: String) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.locale = Locale(identifier: localeIdentifier)
@@ -21,7 +21,7 @@ public extension Double {
         return formatter.string(for: self)!
     }
 
-    public func placeCeil(place: Int) -> Double {
+    func placeCeil(place: Int) -> Double {
         let tenCount = String(Int(self)).count - place
         var adjustFate: Double = 1
         if tenCount > 0 {
@@ -35,7 +35,7 @@ public extension Double {
         return ceilV
     }
 
-    public var asPercentage:String {
+    var asPercentage:String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
         if let percentString = formatter.string(for: self) {

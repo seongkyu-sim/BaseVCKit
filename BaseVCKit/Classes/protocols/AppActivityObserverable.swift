@@ -55,13 +55,13 @@ public extension AppActivityObserverable {
         return initial
     }
 
-    public func addObserver(appActivityTypes: [AppActivityType]) {
+    func addObserver(appActivityTypes: [AppActivityType]) {
         for type in appActivityTypes {
             addObserver(appActivityType: type)
         }
     }
 
-    public func addObserver(appActivityType: AppActivityType) {
+    func addObserver(appActivityType: AppActivityType) {
         switch appActivityType {
         case .didBecomeActive:
             _ = appDidBecomeActiveOb
@@ -73,13 +73,13 @@ public extension AppActivityObserverable {
         }
     }
 
-    public func removeObserver(appActivityTypes: [AppActivityType]) {
+    func removeObserver(appActivityTypes: [AppActivityType]) {
         for type in appActivityTypes {
             removeObserver(appActivityType: type)
         }
     }
 
-    public func removeObserver(appActivityType: AppActivityType) {
+    func removeObserver(appActivityType: AppActivityType) {
         var ob: NSObjectProtocol!
         switch appActivityType {
         case .didBecomeActive:
@@ -92,7 +92,7 @@ public extension AppActivityObserverable {
         NotificationCenter.default.removeObserver(ob)
     }
 
-    public func appActivityUpdated(appActivityType: AppActivityType) {}
+    func appActivityUpdated(appActivityType: AppActivityType) {}
 }
 
 // Association

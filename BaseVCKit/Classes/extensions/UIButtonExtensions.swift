@@ -14,7 +14,7 @@ public extension UIButton {
 
     // MARK: - Configure Helper
 
-    public static func configure(
+    static func configure(
         image: UIImage?,
         title: String?,
         titleColor: UIColor = .white,
@@ -41,13 +41,13 @@ public extension UIButton {
 
     // MARK: - Background color
 
-    public func setStatesBackground(withNormalColor color: UIColor) {
+    func setStatesBackground(withNormalColor color: UIColor) {
         self.setBackground(color: color, state: .normal)
         self.setBackground(color: color.withRecursiveAlphaComponent(0.7), state: .highlighted)
         self.setBackground(color: color, state: .disabled)
     }
 
-    public func setBackground(color: UIColor, state: UIControl.State) {
+    func setBackground(color: UIColor, state: UIControl.State) {
         self.setBackgroundImage(image(withColor: color), for: state)
     }
 
@@ -65,7 +65,7 @@ public extension UIButton {
 
     // MARK: - Title color
 
-    public func setStatesTitleColor(withNormalColor color: UIColor) {
+    func setStatesTitleColor(withNormalColor color: UIColor) {
         self.setTitleColor(color, for: .normal)
         self.setTitleColor(color, for: .highlighted)
         self.setTitleColor(color.withRecursiveAlphaComponent(0.3), for: .disabled)
@@ -77,7 +77,7 @@ public extension UIButton {
     /**
      * Should set image and title before call 'minSize'
      */
-    public var minSize: CGSize {
+    var minSize: CGSize {
         guard let _ = title(for: .normal) else {
             return CGSize(width: 21, height: 21) // icon only
         }
@@ -95,7 +95,7 @@ public extension UIButton {
 
     // MARK: - Size
 
-    public func widthWithoutEllipsis(paddingH: CGFloat) -> CGFloat {
+    func widthWithoutEllipsis(paddingH: CGFloat) -> CGFloat {
         return titleLabel!.intrinsicContentSize.width + paddingH*2
     }
 }

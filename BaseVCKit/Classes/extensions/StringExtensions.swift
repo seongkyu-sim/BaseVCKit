@@ -34,18 +34,18 @@ public extension String {
 
     // MARK: - White space
 
-    public func replace(string:String, replacement:String) -> String {
+    func replace(string:String, replacement:String) -> String {
         return self.replacingOccurrences(of: string, with: replacement)
     }
 
-    public func removeWhitespace() -> String {
+    func removeWhitespace() -> String {
         return self.replace(string: " ", replacement: "")
     }
 
 
     // MARK: - Trim
 
-    public var condensedWhitespace: String {
+    var condensedWhitespace: String {
         let components = self.components(separatedBy: NSCharacterSet.whitespacesAndNewlines)
         return components.filter { !$0.isEmpty }.joined(separator: " ")
     }
@@ -53,7 +53,7 @@ public extension String {
 
     // MARK: - Email
 
-    public var isEmailValid: Bool {
+    var isEmailValid: Bool {
         do {
             let regex = try NSRegularExpression(pattern: "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])", options: .caseInsensitive)
             return regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count)) != nil
@@ -65,23 +65,23 @@ public extension String {
 
     // MARK: - LocalizedString
 
-    public var localized: String {
+    var localized: String {
         return NSLocalizedString(self, comment: "")
     }
 
-    public func localized(comment: String) -> String {
+    func localized(comment: String) -> String {
         return NSLocalizedString(self, comment:comment)
     }
 
 
     // MARK: - Korean
 
-    public func isHangul() -> Bool{
+    func isHangul() -> Bool{
         let expression = "[ㄱ-ㅎㅏ-ㅣ가-힣]+.*"
         return self.regex(pattern: expression).count > 0
     }
 
-    public var linearhangul: String {
+    var linearhangul: String {
         get {
             let hangle = [
                 ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"],
@@ -102,7 +102,7 @@ public extension String {
 
     // MARK: - Case
 
-    public var firstUppercased: String {
+    var firstUppercased: String {
         guard let first = first else { return "" }
         return String(first).uppercased() + dropFirst()
     }

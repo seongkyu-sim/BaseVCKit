@@ -13,7 +13,7 @@ import UIKit
  */
 public protocol SizeWithLayout: class {}
 public extension SizeWithLayout where Self: UIView {
-    public var size: CGSize {
+    var size: CGSize {
         setNeedsLayout()
         layoutIfNeeded()
         return self.bounds.size
