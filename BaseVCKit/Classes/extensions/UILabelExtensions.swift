@@ -48,7 +48,9 @@ public extension UILabel {
     // MARK: - Strikethrough line
 
     public func renderStrikethrough(text:String?, color:UIColor = UIColor.black) {
-        guard let text = text else { return }
+        guard let text = text else {
+            return
+        }
 
         let attributedText = NSMutableAttributedString(string: text , attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: color])
         attributedText.addAttribute(NSAttributedString.Key.baselineOffset, value: 0, range: NSMakeRange(0, attributedText.length))
@@ -58,8 +60,7 @@ public extension UILabel {
 
     // MARK: - Ellipse Indecator
 
-    public func startEllipseAnimate(withText txt: String = "")
-    {
+    public func startEllipseAnimate(withText txt: String = "") {
         defaultTxt = txt
         stopEllipseAnimate()
         ellipseTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
@@ -67,8 +68,7 @@ public extension UILabel {
         }
     }
 
-    public func stopEllipseAnimate()
-    {
+    public func stopEllipseAnimate() {
         if let aTimer = ellipseTimer {
             aTimer.invalidate()
             ellipseTimer = nil
@@ -106,7 +106,9 @@ public extension UILabel {
     }
 
     private func ellipseUpdate(loading: Bool) {
-        guard let defaultTxt = defaultTxt else { return }
+        guard let defaultTxt = defaultTxt else {
+            return
+        }
 
         guard loading else {
             self.text = defaultTxt

@@ -59,23 +59,22 @@ extension CallBackTargetAction where Self: UIControl {
                          with action: @escaping (Self) -> ())
     {
         // An array of supported touch events
-        let ctrlEvts: [UIControl.Event] =
-            [
-                .touchDown,
-                .touchDownRepeat,
-                .touchDragInside,
-                .touchDragOutside,
-                .touchDragEnter,
-                .touchDragExit,
-                .touchUpInside,
-                .touchUpOutside,
-                .touchCancel,
-                .valueChanged,
-                .editingDidBegin,
-                .editingChanged,
-                .editingDidEnd,
-                .editingDidEndOnExit
-            ]
+        let ctrlEvts: [UIControl.Event] = [
+            .touchDown,
+            .touchDownRepeat,
+            .touchDragInside,
+            .touchDragOutside,
+            .touchDragEnter,
+            .touchDragExit,
+            .touchUpInside,
+            .touchUpOutside,
+            .touchCancel,
+            .valueChanged,
+            .editingDidBegin,
+            .editingChanged,
+            .editingDidEnd,
+            .editingDidEndOnExit
+        ]
 
         ctrlEvts.forEach {
             if controlEvents.contains($0) {
@@ -89,13 +88,10 @@ extension CallBackTargetAction where Self: UIControl {
 
     private func _addActionToView(tag: UInt, action: @escaping (AnyObject) -> ()) {
         let foo = TargetActionProxy(controlEvents: UIControl.Event(rawValue: tag), action: action)
-
         // remove previous if it exists
         viewWithTag(Int(tag))?.removeFromSuperview()
-        
         // since foo is not retained by target(_, action:, forControlEvents:) we must save it somewhere.  This implementation saves it as a subview.
         self.addSubview(foo)
-        
         // add target to button.  Target instance is a proxy object and it calls a selector beloing to that proxy object.
         addTarget(foo, action: #selector(TargetActionProxy.action(_:)), for: UIControl.Event(rawValue: tag))
     }

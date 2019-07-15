@@ -22,20 +22,16 @@ public class SeparatorView: UIView {
     public var lineWidth: CGFloat
     public var dashedLine: Bool
     public var isVerticalLine: Bool
-    public init(lineColor lineColor_: UIColor, lineWidth lineWidth_: CGFloat? = nil, dashedLine dashedLine_: Bool = false, isVerticalLine isVerticalLine_: Bool = false) {
-        if let h = lineWidth_ {
-            lineWidth = h
-        }else {
-            //            if isRetinaDisplay() {
-            //                lineWidth = 0.5
-            //            }else {
-            lineWidth = 1
-            //            }
-        }
-
-        lineColor = lineColor_
-        dashedLine = dashedLine_
-        isVerticalLine = isVerticalLine_
+    public init(
+        lineColor: UIColor,
+        lineWidth: CGFloat? = nil,
+        dashedLine: Bool = false,
+        isVerticalLine: Bool = false
+        ) {
+        self.lineWidth = lineWidth ?? 1
+        self.lineColor = lineColor
+        self.dashedLine = dashedLine
+        self.isVerticalLine = isVerticalLine
         super.init(frame: CGRect.zero)
 
         commonInit()
@@ -81,12 +77,12 @@ public class SeparatorView: UIView {
 
     private func configureConstraints() {
         if isVerticalLine {
-            self.snp.makeConstraints { (make) in
-                make.width.equalTo(lineWidth)
+            self.snp.makeConstraints {
+                $0.width.equalTo(lineWidth)
             }
         }else {
-            self.snp.makeConstraints { (make) in
-                make.height.equalTo(lineWidth)
+            self.snp.makeConstraints {
+                $0.height.equalTo(lineWidth)
             }
         }
     }
@@ -95,7 +91,6 @@ public class SeparatorView: UIView {
     // MARK: - Init
 
     private func commonInit() {
-
         isUserInteractionEnabled = false
 
         clipsToBounds = true

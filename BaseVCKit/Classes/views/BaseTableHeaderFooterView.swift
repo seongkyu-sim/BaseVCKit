@@ -69,13 +69,12 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
     // MARK: - Layout
 
     open func configureConstraints() {
-
-        bgView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(0)
-            make.left.bottom.right.equalToSuperview()
+        bgView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(0)
+            $0.left.bottom.right.equalToSuperview()
         }
-        contentView.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
+        contentView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
         }
     }
 
@@ -125,8 +124,8 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
         if offsetTop > 0 {
             offsetTop = 0
         }
-        bgView.snp.updateConstraints { (make) in
-            make.top.equalToSuperview().offset(offsetTop)
+        bgView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(offsetTop)
         }
     }
 }
@@ -134,25 +133,33 @@ open class BaseTableHeaderFooterView: UIView, SizeWithLayout {
 // KVO
 extension BaseTableHeaderFooterView {
 
-    fileprivate func removeObserversFromView(view: UIView) -> Void {
-        guard isEnableStickBgToTop else { return }
-        assert(nil != view as? UIScrollView, "Self's superview must be kind of `UIScrollView`")
+    fileprivate func removeObserversFromView(view: UIView) -> () {
+        guard isEnableStickBgToTop else {
+            return
+        }
 
+        assert(nil != view as? UIScrollView, "Self's superview must be kind of `UIScrollView`")
         view.removeObserver(self, forKeyPath: KVOKeyHelper.scrollViewContentOffset)
     }
 
-    fileprivate func addScrollViewObservers(view: UIView) -> Void {
-        guard isEnableStickBgToTop else { return }
-        assert(nil != view as? UIScrollView, "Self's superview must be kind of `UIScrollView`")
+    fileprivate func addScrollViewObservers(view: UIView) -> () {
+        guard isEnableStickBgToTop else {
+            return
+        }
 
+        assert(nil != view as? UIScrollView, "Self's superview must be kind of `UIScrollView`")
         view.addObserver(self, forKeyPath: KVOKeyHelper.scrollViewContentOffset, options: NSKeyValueObservingOptions.new, context: nil)
     }
 
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard isEnableStickBgToTop else { return }
+        guard isEnableStickBgToTop else {
+            return
+        }
 
         if keyPath == KVOKeyHelper.scrollViewContentOffset {
-            guard let nsPoint = change?[NSKeyValueChangeKey.newKey], let _ = (nsPoint as AnyObject).cgPointValue else { return }
+            guard let nsPoint = change?[NSKeyValueChangeKey.newKey], let _ = (nsPoint as AnyObject).cgPointValue else {
+                return
+            }
             stickBackgroundToTop()
         }
     }

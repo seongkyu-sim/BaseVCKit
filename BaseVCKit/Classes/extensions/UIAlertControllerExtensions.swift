@@ -9,9 +9,11 @@
 import UIKit
 
 public extension UIAlertController {
-
     public static func showAlert(message: String?, title: String = "title.Notice".localized) {
-        guard let topVC = UIApplication.topVC() else { print("!!! there r no topVC"); return }
+        guard let topVC = UIApplication.topVC() else {
+            print("!!! there r no topVC")
+            return
+        }
 
         let msg = message != nil ?  message : "No message"
         let actionSheetController: UIAlertController = UIAlertController(

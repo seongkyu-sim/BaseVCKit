@@ -14,13 +14,14 @@ public extension UIButton {
 
     // MARK: - Configure Helper
 
-    public static func configure(image: UIImage?,
-                    title: String?,
-                    titleColor: UIColor = .white,
-                    fontSize: CGFloat = 14,
-                    fontWeight: UIFont.Weight = UIFont.Weight.light ,
-                    bgColor: UIColor = .clear,
-                    cornerRadius: CGFloat = 0) -> UIButton {
+    public static func configure(
+        image: UIImage?,
+        title: String?,
+        titleColor: UIColor = .white,
+        fontSize: CGFloat = 14,
+        fontWeight: UIFont.Weight = UIFont.Weight.light ,
+        bgColor: UIColor = .clear,
+        cornerRadius: CGFloat = 0) -> UIButton {
 
         let btn = UIButton(type: .custom)
         btn.setImage(image, for: .normal)

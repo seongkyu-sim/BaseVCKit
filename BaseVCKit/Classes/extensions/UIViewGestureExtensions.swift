@@ -95,7 +95,11 @@ public extension UIView {
         self.addTapGestureRecognizerForNumberOfTaps(numberOfTaps: 2, withResponder: responder)
     }
 
-    public func addTapGestureRecognizerForNumberOfTaps(numberOfTaps: Int = 1, numberOfTouches: Int = 1, withResponder responder: @escaping TapResponseClosure) {
+    public func addTapGestureRecognizerForNumberOfTaps(
+        numberOfTaps: Int = 1,
+        numberOfTouches: Int = 1,
+        withResponder responder: @escaping TapResponseClosure
+        ) {
         let tap = UITapGestureRecognizer()
         tap.numberOfTapsRequired = numberOfTaps
         tap.numberOfTouchesRequired = numberOfTouches

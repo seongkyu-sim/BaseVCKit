@@ -8,20 +8,23 @@
 
 import UIKit
 
-public typealias CKBarButtonHandler = (_ sender: UIBarButtonItem) -> Void
+public typealias CKBarButtonHandler = (_ sender: UIBarButtonItem) -> ()
 
 // A global var to produce a unique address for the assoc object handle
 private var associatedEventHandle: UInt8 = 0
 
 extension UIBarButtonItem {
-
     private var closuresWrapper: ClosureWrapper? {
         get {
             return objc_getAssociatedObject(self, &associatedEventHandle) as? ClosureWrapper
         }
         set {
-            objc_setAssociatedObject(self, &associatedEventHandle, newValue,
-                                     objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(
+                self,
+                &associatedEventHandle,
+                newValue,
+                objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC
+            )
         }
     }
 

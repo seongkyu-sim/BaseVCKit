@@ -11,7 +11,6 @@ import Foundation
 public extension Double {
 
     public func currency(withLocaleIdentifier localeIdentifier: String) -> String {
-
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.locale = Locale(identifier: localeIdentifier)

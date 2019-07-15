@@ -23,7 +23,6 @@ public protocol EasyNavigatable: class {
 }
 
 extension EasyNavigatable where Self: UIViewController {
-
     public func push(_ viewController: UIViewController) {
         push(viewController, isHideBottomBar: false, animated: true)
     }
@@ -60,7 +59,6 @@ extension EasyNavigatable where Self: UIViewController {
     }
 
     public func back(animated: Bool) {
-        let _ = navigationController?.popViewController(animated: animated)
+        _ = navigationController?.popViewController(animated: animated)
     }
 }
-

@@ -49,7 +49,6 @@ public class ProfileImageView: UIView {
     private var bgColor: UIColor
     private var placeHolderIcon: UIImage
     public init(bgColor bgColor_: UIColor, placeHolderIcon placeHolderIcon_: UIImage) {
-
         bgColor = bgColor_
         placeHolderIcon = placeHolderIcon_
         super.init(frame: CGRect.zero)
@@ -108,11 +107,8 @@ public class ProfileImageView: UIView {
     // MARK: - Init
 
     private func commonInit() {
-//        clipsToBounds = true
         backgroundColor = UIColor.clear
-
         url = nil
-
         configureConstraints()
     }
 
@@ -120,8 +116,8 @@ public class ProfileImageView: UIView {
     // MARK: - Layout
 
     private func configureConstraints() {
-        imgView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+        imgView.snp.makeConstraints {
+            $0.edges.equalTo(self)
         }
     }
 

@@ -32,9 +32,9 @@ public extension UITextField {
             underLine = UIView()
             self.addSubview(underLine!)
         }
-        underLine!.snp.makeConstraints { (make) in
-            make.left.bottom.right.equalToSuperview()
-            make.height.equalTo(1)
+        underLine!.snp.makeConstraints {
+            $0.left.bottom.right.equalToSuperview()
+            $0.height.equalTo(1)
         }
         underLine?.backgroundColor = color
     }

@@ -12,7 +12,9 @@ import Foundation
 // MARK: - AppActivityObserverable
 
 public enum AppActivityType: String {
-    case didBecomeActive = "didBecomeActive", willEnterForeground = "willEnterForeground", didEnterBackground = "didEnterBackground"
+    case didBecomeActive = "didBecomeActive"
+    case willEnterForeground = "willEnterForeground"
+    case didEnterBackground = "didEnterBackground"
 }
 
 public protocol AppActivityObserverable: class {
@@ -22,7 +24,6 @@ public protocol AppActivityObserverable: class {
 }
 
 public extension AppActivityObserverable {
-
     private var appDidBecomeActiveOb: NSObjectProtocol {
         return associatedObject(self, key: "appDidEnterBackgroundObserver", initial: observerInitial(appActivityType: .didBecomeActive))
     }
@@ -34,7 +35,6 @@ public extension AppActivityObserverable {
     }
 
     private func observerInitial(appActivityType: AppActivityType) -> (() -> NSObjectProtocol) {
-
         let notiName: NSNotification.Name!
         switch appActivityType {
         case .didBecomeActive:
@@ -66,7 +66,6 @@ public extension AppActivityObserverable {
         case .didBecomeActive:
             _ = appDidBecomeActiveOb
         case .willEnterForeground:
-
             _ = appWillEnterForegroundOb
         case .didEnterBackground:
             print("")

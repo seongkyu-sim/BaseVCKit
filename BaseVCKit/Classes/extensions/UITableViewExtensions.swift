@@ -17,7 +17,9 @@ public extension UITableView {
     }
 
     public func isSelectedCell(at indexPath: IndexPath) -> Bool {
-        guard let selectedRows = self.indexPathsForSelectedRows else { return false }
+        guard let selectedRows = self.indexPathsForSelectedRows else {
+            return false
+        }
 
         return selectedRows.contains(indexPath)
     }

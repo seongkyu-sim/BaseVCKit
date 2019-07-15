@@ -11,7 +11,6 @@ import UIKit
 public extension UITabBar {
 
     public func showDot(itemIndex index: Int, color: UIColor? = UIColor.red) {
-
         let dotRadius = CGFloat(3)
         let tabItemW = self.items == nil ? self.frame.size.width : self.frame.size.width / CGFloat(self.items!.count)
         let centerX = tabItemW * CGFloat(index) + tabItemW/2

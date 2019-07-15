@@ -11,7 +11,9 @@ import UIKit
 public extension UIApplication {
 
     public class func topVC() -> UIViewController? {
-        guard let rootVC = UIApplication.shared.delegate?.window??.rootViewController else { return nil }
+        guard let rootVC = UIApplication.shared.delegate?.window??.rootViewController else {
+            return nil
+        }
 
         var topViewController = rootVC
         while (topViewController.presentedViewController != nil) {

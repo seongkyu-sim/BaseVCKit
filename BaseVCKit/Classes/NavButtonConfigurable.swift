@@ -40,21 +40,19 @@ extension VCPresentType where Self: UIViewController {
     }
 
     public var isPresentedMyModal: Bool {
-
         let keyWindow = UIApplication.shared.keyWindow
 
+        /**
+         * 1. very first time at launch app
+         * 2. self(ViewController) is not wrapped with UITabbarController or UINavigationController
+         */
         guard let _ = keyWindow?.rootViewController else {
-            /**
-             * 1. very first time at launch app
-             * 2. self(ViewController) is not wrapped with UITabbarController or UINavigationController
-             */
             return false
         }
 
         if keyWindow?.rootViewController == self {
             return false
         }
-
         if let navigationController = self.navigationController, navigationController.viewControllers.first != self {
             return false
         }
@@ -135,22 +133,23 @@ extension NavButtonConfigurable where Self: UIViewController {
 }
 
 
-
 // MARK: - Extension of UIViewController
 
 extension UIViewController {
-
     func configureBackButton(icon: UIImage?, title: String?) {
-
         if let icon = icon {
             self.navigationController?.navigationBar.backIndicatorImage = icon
             self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = icon
         }
-
         if let title = title {
             if let nav = self.navigationController,
                 let item = nav.navigationBar.topItem {
-                item.backBarButtonItem  = UIBarButtonItem(title: title, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.dismissAction))
+                item.backBarButtonItem  = UIBarButtonItem(
+                    title: title,
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(self.dismissAction)
+                )
             } else {
                 if let nav = self.navigationController,
                     let _ = nav.navigationBar.backItem {
@@ -169,7 +168,11 @@ extension UIViewController {
             btn.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
             barButton = UIBarButtonItem(customView: btn)
         }else {
-            barButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(self.dismissAction))
+            barButton = UIBarButtonItem(
+                barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                target: self,
+                action: #selector(self.dismissAction)
+            )
         }
         navigationItem.leftBarButtonItem = barButton
     }
@@ -178,4 +181,3 @@ extension UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
-
