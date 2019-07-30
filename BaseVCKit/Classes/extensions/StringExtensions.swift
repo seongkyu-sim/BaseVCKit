@@ -76,9 +76,20 @@ public extension String {
 
     // MARK: - Korean
 
-    func isHangul() -> Bool{
-        let expression = "[ㄱ-ㅎㅏ-ㅣ가-힣]+.*"
-        return self.regex(pattern: expression).count > 0
+    private var expressionForHangul: String {
+        return "[ㄱ-ㅎㅏ-ㅣ가-힣]+.*"
+    }
+
+    func isHangul() -> Bool {
+        return self.regex(pattern: expressionForHangul).count > 0
+    }
+
+    func isStartWithHangul() -> Bool {
+        guard let firstChar = self.first else {
+            return false
+        }
+        let firstCharStr = String(firstChar)
+        return firstCharStr.regex(pattern: expressionForHangul).count > 0
     }
 
     var linearhangul: String {
