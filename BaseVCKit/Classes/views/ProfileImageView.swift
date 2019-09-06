@@ -11,6 +11,29 @@ import Kingfisher
 
 public class ProfileImageView: UIView {
 
+    var bgColor: UIColor {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    var placeHolderIcon: UIImage {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    public init(bgColor: UIColor, placeHolderIcon: UIImage) {
+        self.bgColor = bgColor
+        self.placeHolderIcon = placeHolderIcon
+        super.init(frame: CGRect.zero)
+
+        commonInit()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
     public var url: URL? {
         didSet {
             if let url = url {
@@ -46,40 +69,26 @@ public class ProfileImageView: UIView {
     private var externalBorderWidth: CGFloat = 0
     private var externalBorderColor: UIColor = UIColor.white
 
-    private var bgColor: UIColor
-    private var placeHolderIcon: UIImage
-    public init(bgColor bgColor_: UIColor, placeHolderIcon placeHolderIcon_: UIImage) {
-        bgColor = bgColor_
-        placeHolderIcon = placeHolderIcon_
-        super.init(frame: CGRect.zero)
-
-        commonInit()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
 
     private lazy var imgView: UIImageView = { [unowned self] in
         let v = UIImageView.init()
         v.contentMode = UIView.ContentMode.scaleAspectFill
         self.addSubview(v)
         return v
-    }()
+        }()
     private lazy var imgMaskLayer: CAShapeLayer = { [unowned self] in
         let l = CAShapeLayer()
         return l
-    }()
+        }()
     private lazy var externalBorder: CALayer = { [unowned self] in
         let l = CALayer()
         self.layer.insertSublayer(l, at: 0)
         return l
-    }()
+        }()
 
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+
         if externalBorderWidth > 0 {
             let width = frame.size.width + 2 * externalBorderWidth
             let height = frame.size.height + 2 * externalBorderWidth
@@ -117,7 +126,7 @@ public class ProfileImageView: UIView {
 
     private func configureConstraints() {
         imgView.snp.makeConstraints {
-            $0.edges.equalTo(self)
+            $0.edges.equalToSuperview()
         }
     }
 
