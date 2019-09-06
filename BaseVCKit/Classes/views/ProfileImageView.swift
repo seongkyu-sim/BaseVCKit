@@ -11,12 +11,12 @@ import Kingfisher
 
 public class ProfileImageView: UIView {
 
-    var bgColor: UIColor {
+    public var bgColor: UIColor {
         didSet {
             setNeedsDisplay()
         }
     }
-    var placeHolderIcon: UIImage {
+    public var placeHolderIcon: UIImage {
         didSet {
             setNeedsDisplay()
         }
