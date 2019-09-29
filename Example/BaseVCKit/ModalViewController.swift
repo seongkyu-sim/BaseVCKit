@@ -47,26 +47,30 @@ class ModalViewController: BaseViewController {
     // MARK: - Layout
 
     private func layoutSubViews() {
-        let marginH: CGFloat = 20
+        let padding = UIEdgeInsets(
+            top: 100,
+            left: 20,
+            bottom: keyboardFollowDisAppearOffsetB,
+            right: 20
+        )
+
+        print("padding: \(padding)")
 
         txtField.snp.makeConstraints {
-            $0.top.equalTo(100)
-            $0.left.equalTo(marginH)
-            $0.right.equalTo(-marginH)
+            $0.top.left.right.equalToSuperview().inset(padding)
             $0.height.equalTo(40)
         }
 
         modalBtn.snp.makeConstraints {
-            $0.left.equalTo(marginH)
-            $0.right.equalTo(-marginH)
+            $0.left.right.equalToSuperview().inset(padding)
             $0.height.equalTo(70)
             $0.centerY.equalToSuperview()
         }
 
         doneBtn.snp.makeConstraints {
-            $0.left.equalTo(marginH)
-            $0.right.equalTo(-marginH)
-            $0.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
+            $0.left.right.equalToSuperview().inset(padding)
+//            $0.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
+            $0.bottom.equalToSuperview().inset(padding)
         }
     }
 
@@ -84,17 +88,22 @@ class ModalViewController: BaseViewController {
 
     // KeyboardObserable
 
-    private let keyboardFollowOffsetB = CGFloat(16)
+    private let keyboardFollowAppearOffsetB = CGFloat(16)
+    private var keyboardFollowDisAppearOffsetB: CGFloat {
+//        return bottomLayoutGuide.length
+        return 34
+    }
 
     override var keyboardFollowView: UIView? {
         return doneBtn
     }
 
     override var keyboardFollowOffsetForAppeared: CGFloat {
-        return keyboardFollowOffsetB
+        return keyboardFollowAppearOffsetB
     }
 
     override var keyboardFollowOffsetForDisappeared: CGFloat {
-        return keyboardFollowOffsetB
+//        return keyboardFollowOffsetB
+        return keyboardFollowDisAppearOffsetB
     }
 }
