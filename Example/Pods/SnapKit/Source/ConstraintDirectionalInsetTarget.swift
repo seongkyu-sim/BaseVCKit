@@ -1,9 +1,7 @@
 //
-//  Box.swift
-//  Kingfisher
+//  SnapKit
 //
-//  Created by Wei Wang on 2018/3/17.
-//  Copyright (c) 2019 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +21,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
+#if os(iOS) || os(tvOS)
+import UIKit
+#else
+import AppKit
+#endif
 
-class Box<T> {
-    var value: T
-    
-    init(_ value: T) {
-        self.value = value
-    }
+#if os(iOS) || os(tvOS)
+public protocol ConstraintDirectionalInsetTarget: ConstraintConstantTarget {
 }
+
+@available(iOS 11.0, tvOS 11.0, *)
+extension ConstraintDirectionalInsets: ConstraintDirectionalInsetTarget {
+}
+
+extension ConstraintDirectionalInsetTarget {
+
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal var constraintDirectionalInsetTargetValue: ConstraintDirectionalInsets {
+    if let amount = self as? ConstraintDirectionalInsets {
+      return amount
+    } else {
+      return ConstraintDirectionalInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+    }
+  }
+}
+#endif

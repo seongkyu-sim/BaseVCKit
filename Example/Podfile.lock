@@ -1,21 +1,23 @@
 PODS:
-  - BaseVCKit (4.2.0):
-    - Kingfisher (~> 5.2.0)
-    - SnapKit (~> 4.2.0)
+  - BaseVCKit (4.9.0):
+    - Kingfisher
+    - SnapKit
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Kingfisher (5.2.0)
-  - SnapKit (4.2.0)
+  - Kingfisher (5.8.1):
+    - Kingfisher/Core (= 5.8.1)
+  - Kingfisher/Core (5.8.1)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - BaseVCKit (from `../`)
   - FBSnapshotTestCase
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - FBSnapshotTestCase
     - Kingfisher
     - SnapKit
@@ -25,11 +27,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BaseVCKit: 0af676f5bb49e1de9ba12ec8ef087307ad8d7607
+  BaseVCKit: f318f883785c13a094308960e0f711762669319a
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
 PODFILE CHECKSUM: 603e12f534311d5f70e7ff71af52818c0713e51e
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.0
