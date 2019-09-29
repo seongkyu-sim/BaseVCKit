@@ -120,7 +120,7 @@ extension KeyboardSanpable where Self: UIViewController {
 
         let isAppear: Bool = keyboardTargetHeight != 0
         let followViewIntervalV = isAppear ? keyboardFollowOffsetForAppeared : keyboardFollowOffsetForDisappeared
-        var bottomOffset = keyboardH + followViewIntervalV
+        let bottomOffset = keyboardH + followViewIntervalV
 
         let animations: () -> () = {
             v.snp.updateConstraints({
