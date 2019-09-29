@@ -49,24 +49,24 @@ class ModalViewController: BaseViewController {
     private func layoutSubViews() {
         let marginH: CGFloat = 20
 
-        txtField.snp.makeConstraints { (make) in
-            make.top.equalTo(100)
-            make.left.equalTo(marginH)
-            make.right.equalTo(-marginH)
-            make.height.equalTo(40)
+        txtField.snp.makeConstraints {
+            $0.top.equalTo(100)
+            $0.left.equalTo(marginH)
+            $0.right.equalTo(-marginH)
+            $0.height.equalTo(40)
         }
 
-        modalBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(marginH)
-            make.right.equalTo(-marginH)
-            make.height.equalTo(70)
-            make.centerY.equalToSuperview()
+        modalBtn.snp.makeConstraints {
+            $0.left.equalTo(marginH)
+            $0.right.equalTo(-marginH)
+            $0.height.equalTo(70)
+            $0.centerY.equalToSuperview()
         }
 
-        doneBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(marginH)
-            make.right.equalTo(-marginH)
-            make.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
+        doneBtn.snp.makeConstraints {
+            $0.left.equalTo(marginH)
+            $0.right.equalTo(-marginH)
+            $0.bottom.equalToSuperview().offset(-keyboardFollowOffsetB)
         }
     }
 
@@ -98,4 +98,3 @@ class ModalViewController: BaseViewController {
         return keyboardFollowOffsetB
     }
 }
-

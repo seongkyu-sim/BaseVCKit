@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         if let w = window {
-            w.backgroundColor = UIColor.white
             w.rootViewController = CustomTabbar.tabVC
             w.makeKeyAndVisible()
         }

@@ -85,9 +85,15 @@ public protocol KeyboardSanpable: KeyboardObserverable {
 }
 
 extension KeyboardSanpable where Self: UIViewController {
-    public var keyboardFollowView: UIView? { return nil }
-    public var keyboardFollowOffsetForAppeared: CGFloat { return 0 }
-    public var keyboardFollowOffsetForDisappeared: CGFloat { return 0 }
+    public var keyboardFollowView: UIView? {
+        return nil
+    }
+    public var keyboardFollowOffsetForAppeared: CGFloat {
+        return 0
+    }
+    public var keyboardFollowOffsetForDisappeared: CGFloat {
+        return 0
+    }
 
     public func willAnimateKeyboard(keyboardTargetHeight: CGFloat, duration: Double, animationType: UIView.AnimationOptions) {
         guard let animations = self.keyboardFollowViewUpdateContraintsAnimations(keyboardTargetHeight: keyboardTargetHeight) else {
@@ -107,9 +113,14 @@ extension KeyboardSanpable where Self: UIViewController {
             return nil
         }
 
+        var keyboardH = keyboardTargetHeight
+        if keyboardH < 0 {
+            keyboardH = 0
+        }
+
         let isAppear: Bool = keyboardTargetHeight != 0
         let followViewIntervalV = isAppear ? keyboardFollowOffsetForAppeared : keyboardFollowOffsetForDisappeared
-        let bottomOffset = keyboardTargetHeight + followViewIntervalV
+        var bottomOffset = keyboardH + followViewIntervalV
 
         let animations: () -> () = {
             v.snp.updateConstraints({
