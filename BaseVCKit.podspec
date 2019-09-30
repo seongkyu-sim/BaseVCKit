@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BaseVCKit'
-  s.version          = '4.9.4'
+  s.version          = '4.9.5'
   s.summary          = 'Useful utils for UIViewController'
 
 # This description is used to generate tags and improve search results.

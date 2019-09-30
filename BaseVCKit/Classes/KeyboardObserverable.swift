@@ -121,9 +121,11 @@ extension KeyboardSanpable where Self: UIViewController {
         let isAppear: Bool = keyboardTargetHeight > 0
 
         // for fix stacked UIViewController on iOS 13
+        /*
         if !isAppear && !isFirstResponder {
             return nil
         }
+        */
 
         let followViewIntervalV = isAppear ? keyboardFollowOffsetForAppeared : keyboardFollowOffsetForDisappeared
         let bottomOffset = keyboardH + followViewIntervalV
