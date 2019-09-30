@@ -16,8 +16,8 @@ public protocol EasyNavigatable: class {
     func push(_ viewController: UIViewController)
     func push(_ viewController: UIViewController, isHideBottomBar: Bool)
     func push(_ viewController: UIViewController, isHideBottomBar: Bool, animated: Bool)
-    func modal(_ viewController: UIViewController)
-    func modal(_ viewController: UIViewController, animated: Bool)
+    func modal(_ viewController: UIViewController, forceFullScreen: Bool)
+    func modal(_ viewController: UIViewController, forceFullScreen: Bool, animated: Bool)
     func back()
     func back(animated: Bool)
 }
@@ -39,12 +39,18 @@ extension EasyNavigatable where Self: UIViewController {
         }
     }
 
-    public func modal(_ viewController: UIViewController) {
-        modal(viewController, animated: true)
+    public func modal(_ viewController: UIViewController, forceFullScreen: Bool = false) {
+        modal(viewController, forceFullScreen: forceFullScreen, animated: true)
     }
 
-    public func modal(_ viewController: UIViewController, animated: Bool = true) {
+    public func modal(_ viewController: UIViewController, forceFullScreen: Bool = false, animated: Bool = true) {
+
         let nav = UINavigationController(rootViewController: viewController)
+
+        if forceFullScreen {
+            nav.modalPresentationStyle = .fullScreen
+        }
+
         if let tc = tabBarController {
             tc.present(nav, animated: animated, completion: nil)
         }else if let nv = navigationController {
