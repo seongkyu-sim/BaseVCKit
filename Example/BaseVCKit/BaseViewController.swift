@@ -99,7 +99,7 @@ class BaseViewController: UIViewController, EasyNavigatable, KeyboardSanpable {
     }
 
     public func willChangeKeyboard(height: CGFloat) {
-        print("height: \(height)")
+//        print("height: \(height)")
     }
 }
 

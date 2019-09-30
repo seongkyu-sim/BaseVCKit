@@ -54,8 +54,6 @@ class ModalViewController: BaseViewController {
             right: 20
         )
 
-        print("padding: \(padding)")
-
         txtField.snp.makeConstraints {
             $0.top.left.right.equalToSuperview().inset(padding)
             $0.height.equalTo(40)
