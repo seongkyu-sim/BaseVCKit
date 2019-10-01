@@ -80,7 +80,7 @@ public extension AppActivityObserverable {
     }
 
     func removeObserver(appActivityType: AppActivityType) {
-        var ob: NSObjectProtocol!
+        var ob: NSObjectProtocol?
         switch appActivityType {
         case .didBecomeActive:
             ob = appDidBecomeActiveOb
@@ -89,7 +89,9 @@ public extension AppActivityObserverable {
         case .didEnterBackground:
             ob = appDidEnterBackgroundOb
         }
-        NotificationCenter.default.removeObserver(ob)
+        if let ob = ob {
+            NotificationCenter.default.removeObserver(ob)
+        }
     }
 
     func appActivityUpdated(appActivityType: AppActivityType) {}
